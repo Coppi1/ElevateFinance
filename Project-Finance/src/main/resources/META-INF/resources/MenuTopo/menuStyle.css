@@ -1,0 +1,13 @@
+.menu-bar {
+    background-color: #333; /* Cor de fundo da barra de menu */
+    color: #fff; /* Cor do texto */
+    position: fixed; /* Torna a barra de menu fixa na parte superior */
+    top: 0; /* A barra de menu ficará no topo da janela */
+    left: 0;
+    width: 100%; /* Cobrirá toda a largura da janela */
+    z-index: 1000; /* Define a ordem de empilhamento (ajuste conforme necessário) */
+}
+
+.spacer {
+    height: 50px; /* Ajuste conforme a altura da barra de menu */
+}
