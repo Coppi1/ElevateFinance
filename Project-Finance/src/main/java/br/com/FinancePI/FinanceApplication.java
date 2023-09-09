@@ -1,4 +1,4 @@
-package br.com.helloworld;
+package br.com.FinancePI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
