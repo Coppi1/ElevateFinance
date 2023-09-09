@@ -1,6 +1,6 @@
 package br.com.FinancePI.controladores;
 
-public class loginController {
+public class LoginDAO {
 
 
 
