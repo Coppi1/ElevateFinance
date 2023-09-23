@@ -17,6 +17,7 @@ public class receitaController {
     private Receita receita = new Receita();
 
     public void salvar(){
+
         rDao.inserir(receita);
     }
 

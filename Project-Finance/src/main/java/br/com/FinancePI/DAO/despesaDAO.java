@@ -17,16 +17,15 @@ import org.springframework.stereotype.Component;
 public class despesaDAO {
 
 
-    EntityManagerFactory entityManFac = Persistence.createEntityManagerFactory("default");
+    @PersistenceContext
+    private  EntityManager entityManager;
 
 
-    EntityManager entityManager = entityManFac.createEntityManager();
-
-
+    @Transactional
     public void inserir(Despesa despesa){
-        entityManager.getTransaction().begin();
+
         entityManager.persist(despesa);
-        entityManager.getTransaction().commit();
+
     }
 
 
