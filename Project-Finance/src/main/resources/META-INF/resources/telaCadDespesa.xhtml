@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+</h:head>
+
+<h:body>
+
+    <h:form>
+        <p:panel header="Lançamento de Despesas">
+
+            <p:messages id="msg_confirmacao" closable="true"/>
+
+            <h:panelGrid id="campos" columns="2">
+
+                <p:outputLabel value="Número único:"/>
+                <p:inputText size="2" maxlength="5" readonly="true" value="#{despesaController.despesa.cod}"/>
+
+
+                <p:outputLabel value="Fornecedor/Origem:"/>
+                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
+                             required="true" requiredMessage="O campo Fornecedor é obrigadorio!"/>
+
+                <p:outputLabel value="Descrição da Despesa:"/>
+                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
+                             required="true" requiredMessage="O campo Descrição é obrigadorio!"/>
+
+                <p:outputLabel value="Data de Validade:"/>
+                <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                            pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
+                            required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+
+                <p:outputLabel value="Valor:"/>
+                <p:inputText value="#{despesaController.despesa.valor}"
+                             required="true" requiredMessage="O campo Valor é obrigadorio!"
+                             converterMessage="Informe um valor válido! (apenas números)">
+                    <f:convertNumber type="currency" pattern="0.00"/>
+                </p:inputText>
+
+                <p:outputLabel value="Forma de Pagamento:"/>
+                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
+                             required="true" requiredMessage="O campo nome é obrigadorio!"/>
+
+                <p:commandButton value="Cadastrar!"
+                                 actionListener="#{despesaController.salvar()}"
+                                 update="msg_confirmacao campos"/>
+
+            </h:panelGrid>
+
+
+        </p:panel>
+    </h:form>
+
+</h:body>
+</html>
