@@ -29,32 +29,29 @@
 
 
             <p:outputLabel value="Codigo de Lançamento:"/>
-            <p:inputText siza="50" maxlength="10" value="#{receitaController.receita.id}">
-
-
+            <p:inputText id="txId" siza="50" maxlength="10" value="#{receitaController.receita.id}"/>
 
 
             <p:outputLabel value="Descrição da Receita:"/>
-            <p:inputText siza="90" maxlength="80" value="#{receitaController.receita.descricao}"
+            <p:inputText id="txDescRec" siza="90" maxlength="80" value="#{receitaController.receita.descricao}"
                          rendered="true"
                          requiredMessage="Informar a descrição da Receita"/>
 
 
             <p:outputLabel value="Data de lançamento:"/>
-            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+            <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
                         pattern="dd/MM/yyyy" value="#{receitaController.receita.dataLancamento}"
                         required="true" requiredMessage="O campo data é obrigadorio!"/>
 
 
             <p:outputLabel value="Valor bruto da Receita:"/>
-            <p:inputText size="20"  maxlength="10" value="#{receitaController.receita.valorBruto}"
+            <p:inputText id="txValor" size="20"  maxlength="10" value="#{receitaController.receita.valorBruto}"
                          required="true"
                          requiredMessage="Informar valores inteiros no nesse campos"
                          validatorMessage="O campo receita aceita somente valores maior que R$0.00">
-        </p:inputText>
+            </p:inputText>
 
         </h:panelGrid>
-
 
         <h:panelGrid columns="4">
             <p:commandButton value="Salvar" actionListener="#{receitaController.salvar()}"

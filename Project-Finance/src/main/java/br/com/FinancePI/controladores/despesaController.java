@@ -4,6 +4,7 @@ import br.com.FinancePI.DAO.despesaDAO;
 import br.com.FinancePI.Entidades.Despesa;
 import jakarta.faces.view.ViewScoped;
 import lombok.Data;
+import org.omnifaces.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,8 @@ public class despesaController {
     public void salvar(){
 
         despDAO.inserir(despesa);
+        despesa = new Despesa();
+        Messages.addFlashGlobalInfo("Registro salvo com sucesso");
     }
 
 

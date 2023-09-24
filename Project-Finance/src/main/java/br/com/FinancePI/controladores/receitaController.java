@@ -38,7 +38,7 @@ public class receitaController {
             } else {
                 Messages.addFlashGlobalError("ID da receita não especificado");
             }
-            receita = new Receita();
+
         }
 
     public void buscarReceita() {
@@ -58,7 +58,7 @@ public class receitaController {
     public void alterarReceita() {
         rDao.alterar(receita);
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");
-        receita = new Receita();
+
     }
 }
 

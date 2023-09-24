@@ -84,9 +84,7 @@
                                         pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
                                         required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
-                            <p:commandButton value="Aplicar"
-                                             actionListener=""
-                                             update="tabela"/>
+
 
 
                         </h:panelGrid>
@@ -96,10 +94,10 @@
                                     <h:outputText value="#{despesaController.despesa.cod}" />
                                 </p:column>
                                 <p:column headerText="Descrição">
-                                    <h:outputText value="#{despesaController.despesa.descricao}" />
+                                    <h:outputText value="#{Despesa.descricao}" />
                                 </p:column>
                                 <p:column headerText="Vencimento">
-                                    <h:outputText value="#{despesaController.despesa.vencimento}" />
+                                    <h:outputText value="#{Despesa.vencimento}" />
                                 </p:column>
                                 <p:column headerText="Valor"/>
                             </p:dataTable>
