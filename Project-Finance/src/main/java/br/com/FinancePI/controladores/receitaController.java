@@ -18,8 +18,7 @@ public class receitaController {
 
     private Receita receita = new Receita();
 
-    public void salvar() {
-
+    public void salvar(){
         rDao.inserir(receita);
         receita = new Receita();
         Messages.addFlashGlobalInfo("Registro salvo com sucesso");

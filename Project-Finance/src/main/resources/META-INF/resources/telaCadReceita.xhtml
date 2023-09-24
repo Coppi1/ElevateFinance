@@ -12,7 +12,9 @@
 
 <h:head>
     <title>Lancamento de Receita</title>
-    <h:outputScript name="primefaces/locales/locale-pt.js" />
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="MenuTopo/menuStyle.css"/>
 </h:head>
 
 
@@ -25,9 +27,10 @@
 
         <h:panelGrid id="painelCampos" columns="2">
 
+
             <p:outputLabel value="Codigo de Lançamento:"/>
             <p:inputText siza="50" maxlength="10" value="#{receitaController.receita.id}">
-            </p:inputText>
+
 
 
 
