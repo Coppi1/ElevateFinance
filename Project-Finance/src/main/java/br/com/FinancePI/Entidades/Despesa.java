@@ -18,7 +18,6 @@ public class Despesa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cod;
-
     private String descricao;
     private LocalDate vencimento;
     private String formaPgto;

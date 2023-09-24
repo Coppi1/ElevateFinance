@@ -34,37 +34,50 @@
                             <p:outputLabel value="Número único:"/>
                             <p:inputText  size="2" maxlength="5" value="#{despesaController.despesa.cod}"/>
 
-
                             <p:outputLabel value="Fornecedor/Origem:"/>
-                            <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
-                                         required="true" requiredMessage="O campo Fornecedor é obrigadorio!"/>
+                            <p:inputText id="txFornecedor" size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
+                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
                             <p:outputLabel value="Descrição da Despesa:"/>
                             <p:inputText id="txDescricao" size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
-                                         required="true" requiredMessage="O campo Descrição é obrigadorio!"/>
+                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Descrição é obrigadorio!"/>
 
-                            <p:outputLabel value="Data de Validade:"/>
-                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                            <p:outputLabel value="Data de Vencimento:"/>
+                            <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
                                         pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
-                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                                        required="#{despesaController.valorBoolean}" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
                             <p:outputLabel value="Valor:"/>
-                            <p:inputText value="#{despesaController.despesa.valor}"
-                                         required="true" requiredMessage="O campo Valor é obrigadorio!"
+                            <p:inputText id="txValor" value="#{despesaController.despesa.valor}"
+                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Valor é obrigadorio!"
                                          converterMessage="Informe um valor válido! (apenas números)">
                                 <f:convertNumber type="currency" pattern="0.00"/>
                             </p:inputText>
 
                             <p:outputLabel value="Forma de Pagamento:"/>
-                            <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
-                                         required="true" requiredMessage="O campo nome é obrigadorio!"/>
+                            <p:inputText id="txFormaPgto" size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
+                                         required="#{despesaController.valorBoolean
+                                         }" requiredMessage="O campo nome é obrigadorio!"/>
 
+
+                        </h:panelGrid>
+                        <h:panelGrid columns="4">
                             <p:commandButton value="Salvar"
                                              actionListener="#{despesaController.salvar()}"
                                              update="msg_confirmacao campos"/>
 
-                        </h:panelGrid>
+                            <p:commandButton value="Excluir"
+                                             actionListener="#{despesaController.excluir()}"
+                                             update="msg_confirmacao campos"/>
 
+                            <p:commandButton value="Buscar"
+                                             actionListener="#{despesaController.buscarDespesa()}"
+                                             update="msg_confirmacao campos"/>
+
+                            <p:commandButton value="Alterar"
+                                             actionListener="#{despesaController.alterarDespesa()}"
+                                             update="msg_confirmacao campos"/>
+                        </h:panelGrid>
 
                     </p:panel>
                 </p:splitterPanel>
@@ -76,20 +89,20 @@
 
                             <p:outputLabel value="De:"/>
                             <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
-                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                                        pattern="dd/MM/yyyy"
+                                        required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
                             <p:outputLabel value="Até:"/>
                             <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
-                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                                        pattern="dd/MM/yyyy"
+                                        required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
 
 
 
                         </h:panelGrid>
                         <h:panelGrid>
-                            <p:dataTable value="#{tabelaDespesasController.listaDespesas}" var="despesa">
+                            <p:dataTable value="#{tabelaDespesasController.listaDespesas}" var="Despesa">
                                 <p:column headerText="Código">
                                     <h:outputText value="#{despesaController.despesa.cod}" />
                                 </p:column>
