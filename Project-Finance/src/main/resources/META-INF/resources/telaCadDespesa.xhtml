@@ -13,54 +13,111 @@
     <title>Projeto</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="styles.css"/>
+    <ui:include src="MenuTopo/menuTopo.xhtml" />
 </h:head>
 
 <h:body>
 
     <h:form>
-        <p:panel header="Lançamento de Despesas">
 
-            <p:messages id="msg_confirmacao" closable="true"/>
+        <div class="Splitter">
+            <p:splitter style="height: 300px" styleClass="mb-5">
+                <p:splitterPanel styleClass="flex align-items-center justify-content-center">
 
-            <h:panelGrid id="campos" columns="2">
+                    <p:panel header="Lançamento de Despesas">
 
-                <p:outputLabel value="Número único:"/>
-                <p:inputText size="2" maxlength="5" readonly="true" value="#{despesaController.despesa.cod}"/>
+                        <p:messages id="msg_confirmacao" closable="true"/>
 
+                        <h:panelGrid id="campos" columns="2">
 
-                <p:outputLabel value="Fornecedor/Origem:"/>
-                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
-                             required="true" requiredMessage="O campo Fornecedor é obrigadorio!"/>
-
-                <p:outputLabel value="Descrição da Despesa:"/>
-                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
-                             required="true" requiredMessage="O campo Descrição é obrigadorio!"/>
-
-                <p:outputLabel value="Data de Validade:"/>
-                <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                            pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
-                            required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
-
-                <p:outputLabel value="Valor:"/>
-                <p:inputText value="#{despesaController.despesa.valor}"
-                             required="true" requiredMessage="O campo Valor é obrigadorio!"
-                             converterMessage="Informe um valor válido! (apenas números)">
-                    <f:convertNumber type="currency" pattern="0.00"/>
-                </p:inputText>
-
-                <p:outputLabel value="Forma de Pagamento:"/>
-                <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
-                             required="true" requiredMessage="O campo nome é obrigadorio!"/>
-
-                <p:commandButton value="Cadastrar!"
-                                 actionListener="#{despesaController.salvar()}"
-                                 update="msg_confirmacao campos"/>
-
-            </h:panelGrid>
+                            <p:outputLabel value="Número único:"/>
+                            <p:inputText  size="2" maxlength="5" value="#{despesaController.despesa.cod}"/>
 
 
-        </p:panel>
+                            <p:outputLabel value="Fornecedor/Origem:"/>
+                            <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
+                                         required="true" requiredMessage="O campo Fornecedor é obrigadorio!"/>
+
+                            <p:outputLabel value="Descrição da Despesa:"/>
+                            <p:inputText id="txDescricao" size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
+                                         required="true" requiredMessage="O campo Descrição é obrigadorio!"/>
+
+                            <p:outputLabel value="Data de Validade:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
+                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+
+                            <p:outputLabel value="Valor:"/>
+                            <p:inputText value="#{despesaController.despesa.valor}"
+                                         required="true" requiredMessage="O campo Valor é obrigadorio!"
+                                         converterMessage="Informe um valor válido! (apenas números)">
+                                <f:convertNumber type="currency" pattern="0.00"/>
+                            </p:inputText>
+
+                            <p:outputLabel value="Forma de Pagamento:"/>
+                            <p:inputText size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
+                                         required="true" requiredMessage="O campo nome é obrigadorio!"/>
+
+                            <p:commandButton value="Salvar"
+                                             actionListener="#{despesaController.salvar()}"
+                                             update="msg_confirmacao campos"/>
+
+                        </h:panelGrid>
+
+
+                    </p:panel>
+                </p:splitterPanel>
+                <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+
+                    <p:panel header="Movimentação - Despesas">
+
+                        <h:panelGrid>
+
+                            <p:outputLabel value="De:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
+                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+
+                            <p:outputLabel value="Até:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
+                                        required="true" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+
+                            <p:commandButton value="Aplicar"
+                                             actionListener=""
+                                             update="tabela"/>
+
+
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:dataTable value="#{tabelaDespesasController.listaDespesas}" var="despesa">
+                                <p:column headerText="Código">
+                                    <h:outputText value="#{despesaController.despesa.cod}" />
+                                </p:column>
+                                <p:column headerText="Descrição">
+                                    <h:outputText value="#{despesaController.despesa.descricao}" />
+                                </p:column>
+                                <p:column headerText="Vencimento">
+                                    <h:outputText value="#{despesaController.despesa.vencimento}" />
+                                </p:column>
+                                <p:column headerText="Valor"/>
+                            </p:dataTable>
+
+
+                        </h:panelGrid>
+
+                    </p:panel>
+                </p:splitterPanel>
+            </p:splitter>
+        </div>
+
+
     </h:form>
+
+
+
+
 
 </h:body>
 </html>

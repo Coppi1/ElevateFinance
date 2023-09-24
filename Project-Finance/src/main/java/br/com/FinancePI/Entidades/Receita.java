@@ -8,6 +8,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Entity
 @ViewScoped
 @Data
@@ -15,10 +17,10 @@ import org.springframework.stereotype.Component;
 
 public class Receita {
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private Integer id;
     private String descricao;
-    private Integer dataLancamento;
+    private LocalDate dataLancamento;
     private Integer valorBruto;
 
 
