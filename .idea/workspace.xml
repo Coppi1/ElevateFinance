@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1504f0fc-7203-4b35-8958-16096de688c4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/helloworld/Entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/FinancePI/Entidades/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/helloworld/FinanceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/FinancePI/FinanceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/helloworld/controladores/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Project-Finance/src/main/java/br/com/FinancePI/controladores/loginController.java" afterDir="false" />
-    </list>
+    <list default="true" id="1504f0fc-7203-4b35-8958-16096de688c4" name="Changes" comment="" />
     <list id="1c6796ee-533c-4941-baf6-388aafd0652d" name="Changes by ferna" comment="" />
     <list id="d0f35258-7a11-40fc-b7d5-308804bc975e" name="Changes by Raphael" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,25 +22,30 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectId" id="2V4sixjv9IVCW6jxYPOOT0qthCX" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Coppi-Branch&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeWithMe&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;c2cfd3a06afaea0cf6d16a09a17d9bda&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Coppi-Branch",
+    "last_opened_file_path": "C:/Users/Rafael/Documents/GitHub/Projeto-Integrador-4/Project-Finance",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "CodeWithMe",
+    "spring.configuration.checksum": "c2cfd3a06afaea0cf6d16a09a17d9bda",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="FinanceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="temurin-17" />
@@ -68,6 +69,7 @@
       <workItem from="1694286662186" duration="88000" />
       <workItem from="1694286762833" duration="349000" />
       <workItem from="1694287124258" duration="35000" />
+      <workItem from="1695510688941" duration="47000" />
     </task>
     <servers />
   </component>

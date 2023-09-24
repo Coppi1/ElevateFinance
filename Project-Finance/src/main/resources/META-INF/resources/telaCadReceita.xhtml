@@ -25,40 +25,47 @@
 
         <h:panelGrid id="painelCampos" columns="2">
 
-            <p:outputLabel value="Codigo de Lançamento"/>
-            <p:inputText siza="50" maxlength="10" value="#{receitaController}" readonly="true">
+            <p:outputLabel value="Codigo de Lançamento:"/>
+            <p:inputText siza="50" maxlength="10" value="#{receitaController.receita.id}">
             </p:inputText>
 
 
 
-            <p:outputLabel value="Descrição da Receita"/>
-            <p:inputText siza="30" maxlength="10" value="#{receitaController}"
+            <p:outputLabel value="Descrição da Receita:"/>
+            <p:inputText siza="90" maxlength="80" value="#{receitaController.receita.descricao}"
                          rendered="true"
                          requiredMessage="Informar a descrição da Receita"/>
 
 
-            <p:outputLabel value="Data de Lançamento"/>
-            <p:inputText siza="10" maxlength="5" value="#{receitaController}"
-                         rendered="true"
-                         requiredMessage="Marcar a data de lançamento"/>
-            <p:calendar readonlyInput="true" pattern="dd/MM/yyyy" value="#{receitaController}"/>
+            <p:outputLabel value="Data de lançamento:"/>
+            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
+                        pattern="dd/MM/yyyy" value="#{receitaController.receita.dataLancamento}"
+                        required="true" requiredMessage="O campo data é obrigadorio!"/>
 
 
-            <p:outputLabel value="Valor bruto da Receita"/>
-            <p:inputText size="20"  maxlength="10" value="#{receitaController}"
+            <p:outputLabel value="Valor bruto da Receita:"/>
+            <p:inputText size="20"  maxlength="10" value="#{receitaController.receita.valorBruto}"
                          required="true"
                          requiredMessage="Informar valores inteiros no nesse campos"
                          validatorMessage="O campo receita aceita somente valores maior que R$0.00">
-                <f:validateDoubleRange mininum="0.05"/>
-                <f:convertNumber pattern="0.00"/>
         </p:inputText>
 
         </h:panelGrid>
 
 
-        <h:panelGrid columns="1">
+        <h:panelGrid columns="4">
             <p:commandButton value="Salvar" actionListener="#{receitaController.salvar()}"
-                             update="menssagem painelCampos"/>
+                             update="mensagem painelCampos"/>
+
+            <p:commandButton value="Excluir" actionListener="#{receitaController.excluir()}"
+                             update="mensagem painelCampos"/>
+
+            <p:commandButton value="Buscar" actionListener="#{receitaController.buscarReceita()}"
+                             update="mensagem painelCampos"/>
+
+            <p:commandButton value="Alterar" actionListener="#{receitaController.alterarReceita()}"
+                             update="mensagem painelCampos"/>
+
         </h:panelGrid>
 
 

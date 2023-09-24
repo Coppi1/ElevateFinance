@@ -16,8 +16,10 @@ public class despesaController {
     despesaDAO despDAO = new despesaDAO();
 
     private Despesa despesa = new Despesa();
+
     public void salvar(){
-       despDAO.inserir(despesa);
+
+        despDAO.inserir(despesa);
     }
 
 
