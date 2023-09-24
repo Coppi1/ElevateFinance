@@ -27,23 +27,28 @@ public class receitaDAO {
     }
 
     @Transactional
-    public void excluir(Receita r){
+    public void excluir(Receita r) {
 
-        Receita excluir = entityManager.find(Receita.class, r.getId());
+        if (!entityManager.contains(r)) {
+            r = entityManager.merge(r);
+        }
+        entityManager.remove(r);
+    }
 
+
+    @Transactional
+    public Receita buscarReceitaPorId(int id) {
+        return entityManager.find(Receita.class, id);
     }
 
     @Transactional
-    public Receita buscarReceitaPorId(int id){
-        Receita encontrado = entityManager.find(Receita.class, id);
-        return  encontrado;
+    public void alterar(Receita r) {
+        entityManager.merge(r);
     }
-
-    @Transactional
-    public void alterar (Receita r){
-        entityManager.getTransaction().commit();
-    }
-
-
-
 }
+
+
+
+
+
+
