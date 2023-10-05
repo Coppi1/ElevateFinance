@@ -24,3 +24,5 @@ public class tabelaDespesaDAO {
         return entityManager.createQuery("SELECT d FROM Despesa d", Despesa.class).getResultList();
     }
 }
+
+

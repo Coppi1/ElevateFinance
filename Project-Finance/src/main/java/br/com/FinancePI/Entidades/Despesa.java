@@ -1,27 +1,34 @@
 package br.com.FinancePI.Entidades;
 
 import jakarta.faces.view.ViewScoped;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Data
-@ViewScoped
 @Component
-public class Despesa {
+@Data
+public class Despesa implements Serializable {
+
+    public static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cod;
+
     private String descricao;
-    private LocalDate vencimento;
+
+    private Date vencimento;
+
     private String formaPgto;
+
     private Double valor;
+
     private String fornecedor;
+
 
 }

@@ -89,30 +89,29 @@
 
                             <p:outputLabel value="De:"/>
                             <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy"
+                                        pattern="dd/MM/yyyy" value="#{tabelaDespesaController.dataInicio}"
                                         required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
                             <p:outputLabel value="Até:"/>
                             <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy"
+                                        pattern="dd/MM/yyyy" value="#{tabelaDespesaController.dataFim}"
                                         required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
-
+                            <p:commandButton value="Buscar"
+                                             actionListener="#{tabelaDespesaController.buscarListaDespesa()}"
+                                             update="tabela"/>
 
 
                         </h:panelGrid>
                         <h:panelGrid>
-                            <p:dataTable value="#{tabelaDespesasController.listaDespesas}" var="Despesa">
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{despesaController.despesa.cod}" />
+                            <p:dataTable id="tabela" value="#{tabelaDespesaController.buscarListaDespesa()}" var="Despesa">
+                                <p:column id="cod" headerText="Código">
+                                    <h:outputText lazy="true" value="#{despesa.cod}" />
                                 </p:column>
                                 <p:column headerText="Descrição">
-                                    <h:outputText value="#{Despesa.descricao}" />
+                                    <h:outputText lazy="true" value="#{despesa.descricao}" />
                                 </p:column>
-                                <p:column headerText="Vencimento">
-                                    <h:outputText value="#{Despesa.vencimento}" />
-                                </p:column>
-                                <p:column headerText="Valor"/>
+
                             </p:dataTable>
 
 

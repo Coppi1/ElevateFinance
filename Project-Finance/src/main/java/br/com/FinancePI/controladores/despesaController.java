@@ -5,16 +5,24 @@ import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import lombok.Data;
 import org.omnifaces.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@ManagedBean
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+
 @Component
 @ViewScoped
 @Data
-public class despesaController {
+public class despesaController implements Serializable {
+
+
+    public static final long serialVersionUID = 1L;
 
     @Autowired
     despesaDAO despDAO = new despesaDAO();
@@ -22,6 +30,9 @@ public class despesaController {
     private Despesa despesa = new Despesa();
 
     private String valorBoolean;
+    private Date dataInicio;
+    private Date dataFim;
+    private List<Despesa> listaDespesas;
 
 
     public void salvar(){
@@ -68,6 +79,8 @@ public class despesaController {
         }
 
     }
+
+
 
     public void alterarDespesa() {
 
