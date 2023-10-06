@@ -12,12 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 
 @Component
-@ViewScoped
 @Data
 public class despesaController implements Serializable {
 
@@ -30,8 +30,8 @@ public class despesaController implements Serializable {
     private Despesa despesa = new Despesa();
 
     private String valorBoolean;
-    private Date dataInicio;
-    private Date dataFim;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
     private List<Despesa> listaDespesas;
 
 
@@ -91,10 +91,15 @@ public class despesaController implements Serializable {
 
     }
 
-
-
-
-
-
+    public void buscarListaDespesa() {
+        if (dataInicio != null && dataFim != null) {
+            listaDespesas = despDAO.buscarListaDespesa(dataInicio, dataFim);
+            if (listaDespesas.isEmpty()) {
+                Messages.addFlashGlobalError("Nenhuma despesa encontrada no intervalo de datas especificado");
+            }
+        } else {
+            Messages.addFlashGlobalError("Intervalo de datas não especificado");
+        }
+    }
 
 }

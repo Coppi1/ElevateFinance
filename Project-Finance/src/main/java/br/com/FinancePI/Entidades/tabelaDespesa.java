@@ -1,16 +1,28 @@
 package br.com.FinancePI.Entidades;
 
 import jakarta.faces.view.ViewScoped;
+import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.util.List;
 
+
+@Entity
+@Table
 @Data
-@ViewScoped
 @Repository
 public class tabelaDespesa {
-    public interface EntidadeExemploRepository extends JpaRepository<Despesa, Integer> {
-        // Você pode adicionar métodos de consulta personalizados aqui, se necessário
-    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String descricao;
+
+
 }
+

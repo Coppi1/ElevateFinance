@@ -10,16 +10,18 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 
 @Component
+@Data
 public class despesaDAO implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+
     @PersistenceContext
-    private  EntityManager entityManager;
+    private EntityManager entityManager;
 
 
     @Transactional
@@ -51,14 +53,13 @@ public class despesaDAO implements Serializable {
 
 
     @Transactional
-    public List<Despesa> buscarDespesasPorData(Date dataInicio, Date dataFim) {
-        TypedQuery<Despesa> query = entityManager.createQuery(
-                "SELECT d FROM Despesa d WHERE d.vencimento >= :dataInicio AND d.vencimento <= :dataFim", Despesa.class);
+    public List<Despesa> buscarListaDespesa(LocalDate dataInicio, LocalDate dataFim) {
+        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d.cod, d.descricao FROM Despesa d WHERE d.vencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
         query.setParameter("dataInicio", dataInicio);
         query.setParameter("dataFim", dataFim);
+
         return query.getResultList();
     }
-
 }
 
 

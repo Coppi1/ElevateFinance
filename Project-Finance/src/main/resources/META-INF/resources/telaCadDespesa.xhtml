@@ -19,6 +19,7 @@
 
 <h:body>
 
+
     <h:form>
 
         <div class="Splitter">
@@ -82,52 +83,42 @@
                     </p:panel>
                 </p:splitterPanel>
                 <p:splitterPanel styleClass="flex align-items-center justify-content-center">
-
                     <p:panel header="Movimentação - Despesas">
+                        <h:form>
+                            <h:panelGrid columns="3">
 
-                        <h:panelGrid>
+                                <p:outputLabel value="De:" />
+                                <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                            pattern="dd/MM/yyyy" value="#{despesaController.dataInicio}"
+                                            required="false" requiredMessage="O campo data de vencimento é obrigatório!" />
 
-                            <p:outputLabel value="De:"/>
-                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy" value="#{tabelaDespesaController.dataInicio}"
-                                        required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                                <p:outputLabel value="Até:" />
 
-                            <p:outputLabel value="Até:"/>
-                            <p:calendar navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy" value="#{tabelaDespesaController.dataFim}"
-                                        required="false" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                                <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                            pattern="dd/MM/yyyy" value="#{despesaController.dataFim}"
+                                            required="false" requiredMessage="O campo data de vencimento é obrigatório!" />
 
-                            <p:commandButton value="Buscar"
-                                             actionListener="#{tabelaDespesaController.buscarListaDespesa()}"
-                                             update="tabela"/>
+                                <p:commandButton value="Buscar"
+                                                 actionListener="#{despesaController.buscarListaDespesa()}" update="tabela" />
+                            </h:panelGrid>
 
-
-                        </h:panelGrid>
-                        <h:panelGrid>
-                            <p:dataTable id="tabela" value="#{tabelaDespesaController.buscarListaDespesa()}" var="Despesa">
-                                <p:column id="cod" headerText="Código">
-                                    <h:outputText lazy="true" value="#{despesa.cod}" />
-                                </p:column>
-                                <p:column headerText="Descrição">
-                                    <h:outputText lazy="true" value="#{despesa.descricao}" />
-                                </p:column>
-
-                            </p:dataTable>
-
-
-                        </h:panelGrid>
-
+                            <h:panelGrid>
+                                <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="despesa">
+                                    <p:column headerText="Código">
+                                        <h:outputText value="#{despesa.cod}" />
+                                    </p:column>
+                                    <p:column headerText="Descrição">
+                                        <h:outputText value="#{despesa.descricao}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </h:panelGrid>
+                        </h:form>
                     </p:panel>
                 </p:splitterPanel>
             </p:splitter>
         </div>
 
-
     </h:form>
-
-
-
-
 
 </h:body>
 </html>
