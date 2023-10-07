@@ -19,6 +19,7 @@ import java.util.List;
 
 @Component
 @Data
+@ViewScoped
 public class despesaController implements Serializable {
 
 
@@ -27,7 +28,10 @@ public class despesaController implements Serializable {
     @Autowired
     despesaDAO despDAO = new despesaDAO();
 
-    private Despesa despesa = new Despesa();
+    @Inject
+    private Despesa despesa;
+
+    private Despesa listaDespesa;
 
     private String valorBoolean;
     private LocalDate dataInicio;
@@ -38,7 +42,6 @@ public class despesaController implements Serializable {
     public void salvar(){
 
         valorBoolean = "true";
-
         despDAO.inserir(despesa);
         despesa = new Despesa();
         Messages.addFlashGlobalInfo("Registro salvo com sucesso");
@@ -91,15 +94,5 @@ public class despesaController implements Serializable {
 
     }
 
-    public void buscarListaDespesa() {
-        if (dataInicio != null && dataFim != null) {
-            listaDespesas = despDAO.buscarListaDespesa(dataInicio, dataFim);
-            if (listaDespesas.isEmpty()) {
-                Messages.addFlashGlobalError("Nenhuma despesa encontrada no intervalo de datas especificado");
-            }
-        } else {
-            Messages.addFlashGlobalError("Intervalo de datas não especificado");
-        }
-    }
 
 }

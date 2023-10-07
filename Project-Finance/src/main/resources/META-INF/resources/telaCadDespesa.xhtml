@@ -85,7 +85,7 @@
                 <p:splitterPanel styleClass="flex align-items-center justify-content-center">
                     <p:panel header="Movimentação - Despesas">
                         <h:form>
-                            <h:panelGrid columns="3">
+                            <h:panelGrid columns="2">
 
                                 <p:outputLabel value="De:" />
                                 <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
@@ -103,12 +103,13 @@
                             </h:panelGrid>
 
                             <h:panelGrid>
-                                <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="despesa">
+                                <p:dataTable id="tabela" value="#{tabDespesaController.despesa}" var="Despesa"
+                                rows="5" paginatorPosition="bottom">
                                     <p:column headerText="Código">
-                                        <h:outputText value="#{despesa.cod}" />
+                                        <h:outputText value="#{tabDespesaController.despesa.cod}" />
                                     </p:column>
                                     <p:column headerText="Descrição">
-                                        <h:outputText value="#{despesa.descricao}" />
+                                        <h:outputText value="#{tabDespesaController.despesa.descricao}" />
                                     </p:column>
                                 </p:dataTable>
                             </h:panelGrid>

@@ -4,6 +4,7 @@ import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.enterprise.inject.Typed;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.Data;
@@ -19,7 +20,9 @@ import java.util.List;
 @Data
 public class despesaDAO implements Serializable {
 
+    public static final long serialVersionUID = 1L;
 
+    @Inject
     @PersistenceContext
     private EntityManager entityManager;
 

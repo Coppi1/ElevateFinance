@@ -1,5 +1,6 @@
 package br.com.FinancePI.Entidades;
 
+import com.sun.istack.NotNull;
 import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.persistence.*;
@@ -16,17 +17,24 @@ import java.util.Date;
 @Data
 public class Despesa implements Serializable {
 
+
+    public static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cod;
 
+
     private String descricao;
 
+    @Temporal(TemporalType.DATE)
     private LocalDate vencimento;
 
     private String formaPgto;
 
+
     private Double valor;
+
 
     private String fornecedor;
 
