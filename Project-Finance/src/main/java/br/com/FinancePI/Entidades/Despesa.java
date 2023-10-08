@@ -16,12 +16,15 @@ import java.util.Date;
 @Data
 public class Despesa implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cod;
 
     private String descricao;
 
+    @Temporal(TemporalType.DATE)
     private LocalDate vencimento;
 
     private String formaPgto;

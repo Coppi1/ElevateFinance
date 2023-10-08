@@ -19,6 +19,7 @@ import java.util.List;
 
 @Component
 @Data
+@ViewScoped
 public class despesaController implements Serializable {
 
 
@@ -27,11 +28,13 @@ public class despesaController implements Serializable {
     @Autowired
     despesaDAO despDAO = new despesaDAO();
 
-    private Despesa despesa = new Despesa();
+    @Inject
+    private Despesa despesa;
 
     private String valorBoolean;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+
     private List<Despesa> listaDespesas;
 
 

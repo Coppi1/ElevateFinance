@@ -4,6 +4,7 @@ import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.enterprise.inject.Typed;
 import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import lombok.Data;
@@ -19,7 +20,9 @@ import java.util.List;
 @Data
 public class despesaDAO implements Serializable {
 
+    private static final long serialVersionUID = 1L;
 
+    @Inject
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -54,7 +57,7 @@ public class despesaDAO implements Serializable {
 
     @Transactional
     public List<Despesa> buscarListaDespesa(LocalDate dataInicio, LocalDate dataFim) {
-        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d.cod, d.descricao FROM Despesa d WHERE d.vencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
+        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d FROM Despesa d WHERE d.vencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
         query.setParameter("dataInicio", dataInicio);
         query.setParameter("dataFim", dataFim);
 
