@@ -34,6 +34,7 @@ public class despesaController implements Serializable {
     private String valorBoolean;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private double soma;
 
     private List<Despesa> listaDespesas;
 
@@ -51,9 +52,9 @@ public class despesaController implements Serializable {
 
         valorBoolean = "false";
 
-        if (despesa.getCod() != null) {
+        if (despesa.getId() != null) {
 
-            Despesa despesaParaExcluir = despDAO.buscarDespesaPorId(despesa.getCod());
+            Despesa despesaParaExcluir = despDAO.buscarDespesaPorId(despesa.getId());
             if (despesaParaExcluir != null) {
                 despDAO.excluir(despesaParaExcluir);
                 Messages.addFlashGlobalInfo("Registro excluído com sucesso");
@@ -70,8 +71,8 @@ public class despesaController implements Serializable {
 
         valorBoolean = "false";
 
-        if (despesa.getCod() != null) {
-            Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getCod());
+        if (despesa.getId() != null) {
+            Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getId());
             if (despesaEncontrada != null) {
                 despesa = despesaEncontrada;
             } else {
@@ -104,5 +105,13 @@ public class despesaController implements Serializable {
             Messages.addFlashGlobalError("Intervalo de datas não especificado");
         }
     }
+
+    public void calcularSoma() {
+        soma = listaDespesas.stream().mapToDouble(Despesa::getValor).sum();
+    }
+
+
+
+
 
 }
