@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @ViewScoped
 @Data
 @Component
+
 public class Receita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

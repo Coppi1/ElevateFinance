@@ -1,4 +1,4 @@
-package br.com.helloworld.Entidades;
+package br.com.FinancePI.Entidades;
 
 public class Usuario {
 }
