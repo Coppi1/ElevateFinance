@@ -20,18 +20,25 @@ public class Despesa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cod;
+    private Integer id;
 
     private String descricao;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate vencimento;
+    private LocalDate dtVencimento;
 
-    private String formaPgto;
+    private String formaPGTO;
 
     private Double valor;
 
+   // private LocalDate dtLancamento;
+
     private String fornecedor;
 
+   // @ManyToOne
+   // private Fornecedor fornecedor;
+
+  //  @ManyToOne
+  //  private CategoriaDespesa categoriaDespesa;
 
 }

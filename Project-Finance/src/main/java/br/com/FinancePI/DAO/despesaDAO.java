@@ -57,7 +57,7 @@ public class despesaDAO implements Serializable {
 
     @Transactional
     public List<Despesa> buscarListaDespesa(LocalDate dataInicio, LocalDate dataFim) {
-        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d FROM Despesa d WHERE d.vencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
+        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d FROM Despesa d WHERE d.dtVencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
         query.setParameter("dataInicio", dataInicio);
         query.setParameter("dataFim", dataFim);
 
