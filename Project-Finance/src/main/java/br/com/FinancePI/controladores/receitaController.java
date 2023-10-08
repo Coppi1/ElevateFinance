@@ -3,7 +3,6 @@ package br.com.FinancePI.controladores;
 import br.com.FinancePI.DAO.receitaDAO;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Named;
 import lombok.Data;
 import org.omnifaces.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ViewScoped
 @Data
-@Named
 public class receitaController {
 
     @Autowired

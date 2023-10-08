@@ -84,7 +84,7 @@
                 </p:splitterPanel>
                 <p:splitterPanel styleClass="flex align-items-center justify-content-center">
                     <p:panel header="Movimentação - Despesas">
-
+                        <h:form>
                             <h:panelGrid columns="2">
 
                                 <p:outputLabel value="De:" />
@@ -99,35 +99,21 @@
                                             required="false" requiredMessage="O campo data de vencimento é obrigatório!" />
 
                                 <p:commandButton value="Buscar"
-                                                 actionListener="#{tabDespesaController.buscarListaDespesa()}" update="tabela" />
+                                                 actionListener="#{despesaController.buscarListaDespesa()}" update="tabela" />
                             </h:panelGrid>
 
                             <h:panelGrid>
-                                <p:dataTable id="tabela" value="#{tabDespesaController.buscarListaDespesa()}" var="Despesa"
-                                             paginator="true" rows="10" lazy="false">
+                                <p:dataTable id="tabela" value="#{tabDespesaController.despesa}" var="Despesa"
+                                rows="5" paginatorPosition="bottom">
                                     <p:column headerText="Código">
-                                        <h:outputText value="#{Despesa.cod}" />
+                                        <h:outputText value="#{tabDespesaController.despesa.cod}" />
                                     </p:column>
                                     <p:column headerText="Descrição">
-                                        <h:outputText value="#{Despesa.descricao}" />
-                                    </p:column>
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{Despesa.vencimento}" >
-                                            <f:convertDateTime type="date" locale="pt_BR" timeZone="America/Sao_Paulo" />
-                                        </h:outputText>
-                                    </p:column>
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{Despesa.formaPgto}" />
-                                    </p:column>
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{Despesa.valor}" />
-                                    </p:column>
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{Despesa.fornecedor}" />
+                                        <h:outputText value="#{tabDespesaController.despesa.descricao}" />
                                     </p:column>
                                 </p:dataTable>
                             </h:panelGrid>
-
+                        </h:form>
                     </p:panel>
                 </p:splitterPanel>
             </p:splitter>

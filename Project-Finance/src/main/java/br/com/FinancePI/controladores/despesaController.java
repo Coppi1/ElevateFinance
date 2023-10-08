@@ -6,7 +6,6 @@ import br.com.FinancePI.Entidades.Receita;
 import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
-import jakarta.inject.Named;
 import lombok.Data;
 import org.omnifaces.util.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,13 @@ import java.util.List;
 @Component
 @Data
 @ViewScoped
-@Named
 public class despesaController implements Serializable {
 
 
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    private despesaDAO despDAO;
+    despesaDAO despDAO = new despesaDAO();
 
     @Inject
     private Despesa despesa;
