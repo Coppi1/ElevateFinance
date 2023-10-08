@@ -4,10 +4,13 @@ import br.com.FinancePI.DAO.despesaDAO;
 import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.annotation.ManagedBean;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
 import org.omnifaces.util.Messages;
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -65,6 +68,7 @@ public class despesaController implements Serializable {
             Messages.addFlashGlobalError("Número único da despesa não especificado");
         }
 
+
     }
 
     public void buscarDespesa() {
@@ -111,6 +115,25 @@ public class despesaController implements Serializable {
     }
 
 
+    public void onRowEdit(RowEditEvent event) {
+        Despesa despesaEditada = (Despesa) event.getObject();
+        despDAO.alterar(despesaEditada);
+        for (Despesa despesa : listaDespesas) {
+            if (despesa.getId().equals(despesaEditada.getId())) {
+                despesa.setDescricao(despesaEditada.getDescricao());
+                despesa.setValor(despesaEditada.getValor());
+                break;
+            }
+        }
+
+        FacesMessage msg = new FacesMessage("Despesa editada com sucesso", "Código: " + despesaEditada.getId());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Edição cancelada", "Código: " + ((Despesa) event.getObject()).getId());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
 
 

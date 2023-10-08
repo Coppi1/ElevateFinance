@@ -121,6 +121,7 @@
                             <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="Despesa" rows="20"
                                          paginator="true" style="background: blue" rowExpandMode="true"
                                          styleClass="mt-2"
+                                         editable="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
                                 <p:column headerText="Nº Único">
                                     <h:outputText value="#{Despesa.id}"/>
@@ -140,9 +141,11 @@
                                 <p:column headerText="Forma de Pagamento">
                                     <h:outputText value="#{Despesa.formaPGTO}"/>
                                 </p:column>
+
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
                                 </f:facet>
+
                             </p:dataTable>
                         </h:panelGrid>
                     </p:panel>
