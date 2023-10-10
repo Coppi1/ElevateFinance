@@ -11,7 +11,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 
 <h:head>
@@ -113,7 +114,6 @@
 
                             <p:commandButton value="Buscar"
                                              actionListener="#{despesaController.buscarListaDespesa()}"
-                                             action="#{despesaController.calcularSoma()}"
                                              update="tabela"/>
                         </h:panelGrid>
 
@@ -124,24 +124,23 @@
                                          editable="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
                                 <p:column headerText="Nº Único">
-                                    <h:outputText value="#{Despesa.id}"/>
+                                    #{Despesa.id}
                                 </p:column>
                                 <p:column headerText="Descrição">
-                                    <h:outputText value="#{Despesa.descricao}"/>
+                                    #{Despesa.descricao}
                                 </p:column>
                                 <p:column headerText="Valor">
-                                    <h:outputText value="#{Despesa.valor}"/>
+                                    #{Despesa.valor}
                                 </p:column>
                                 <p:column headerText="Fornecedor">
-                                    <h:outputText value="#{Despesa.fornecedor}"/>
+                                    #{Despesa.fornecedor}
                                 </p:column>
                                 <p:column headerText="Vencimento">
-                                    <h:outputText value="#{Despesa.dtVencimento}"/>
+                                    #{Despesa.dtVencimento}
                                 </p:column>
                                 <p:column headerText="Forma de Pagamento">
-                                    <h:outputText value="#{Despesa.formaPGTO}"/>
+                                    #{Despesa.formaPGTO}
                                 </p:column>
-
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
                                 </f:facet>

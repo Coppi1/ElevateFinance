@@ -1,9 +1,7 @@
-package br.com.FinancePI.controladores;
+package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.despesaDAO;
+import br.com.FinancePI.DAO.DespesaDAO;
 import br.com.FinancePI.Entidades.Despesa;
-import br.com.FinancePI.Entidades.Receita;
-import jakarta.annotation.ManagedBean;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -16,20 +14,19 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
 @Component
 @Data
 @ViewScoped
-public class despesaController implements Serializable {
+public class DespesaController implements Serializable {
 
 
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    despesaDAO despDAO = new despesaDAO();
+    DespesaDAO despDAO = new DespesaDAO();
 
     @Inject
     private Despesa despesa;
@@ -108,6 +105,7 @@ public class despesaController implements Serializable {
         } else {
             Messages.addFlashGlobalError("Intervalo de datas não especificado");
         }
+        calcularSoma();
     }
 
     public void calcularSoma() {

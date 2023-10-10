@@ -1,9 +1,6 @@
 package br.com.FinancePI.DAO;
 
-import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
-import jakarta.enterprise.inject.Typed;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
@@ -12,13 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
 @Component
 @Data
-public class receitaDAO implements Serializable {
+public class DeceitaDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
