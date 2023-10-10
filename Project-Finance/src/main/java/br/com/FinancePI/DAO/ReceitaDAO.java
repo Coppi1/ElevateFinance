@@ -14,7 +14,7 @@ import java.util.List;
 
 @Component
 @Data
-public class DeceitaDAO implements Serializable {
+public class ReceitaDAO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

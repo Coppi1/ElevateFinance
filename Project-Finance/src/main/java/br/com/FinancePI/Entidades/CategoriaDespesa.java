@@ -1,11 +1,10 @@
 package br.com.FinancePI.Entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Entity
 @Component
@@ -19,6 +18,9 @@ public class CategoriaDespesa {
     private Integer cod;
 
     private String descricao;
+
+    @OneToMany
+    private List<Despesa> listaDespesas;
 
 
 }

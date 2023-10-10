@@ -31,14 +31,16 @@ public class Despesa implements Serializable {
 
     private Double valor;
 
-   // private LocalDate dtLancamento;
+    private LocalDate dtLancamento;
 
     private String fornecedor;
+
+    @ManyToOne
+    private CategoriaDespesa categoriaDespesa;
+
 
    // @ManyToOne
    // private Fornecedor fornecedor;
 
-  //  @ManyToOne
-  //  private CategoriaDespesa categoriaDespesa;
 
 }

@@ -1,6 +1,6 @@
 package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.DeceitaDAO;
+import br.com.FinancePI.DAO.ReceitaDAO;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
@@ -23,7 +23,7 @@ public class ReceitaController implements Serializable {
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    DeceitaDAO recDAO = new DeceitaDAO();
+    ReceitaDAO recDAO = new ReceitaDAO();
 
     @Inject
     private Receita receita;

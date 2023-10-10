@@ -26,7 +26,9 @@ public class DespesaDAO implements Serializable {
     @Transactional
     public void inserir(Despesa despesa){
 
+
         entityManager.persist(despesa);
+
 
     }
 
