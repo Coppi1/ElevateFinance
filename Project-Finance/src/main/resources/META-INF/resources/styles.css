@@ -3,3 +3,10 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
 }
+.Splitter {
+    position: relative;
+    top: 10px;
+}
+.txDescricao {
+    height: 50px;
+}
