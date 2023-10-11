@@ -29,9 +29,7 @@ public class DespesaDAO implements Serializable {
         LocalDate dataLancamento = LocalDate.now();
         despesa.setDtLancamento(dataLancamento);
 
-
         entityManager.persist(despesa);
-
 
     }
 

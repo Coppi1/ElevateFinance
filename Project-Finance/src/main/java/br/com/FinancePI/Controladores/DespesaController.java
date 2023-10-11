@@ -118,33 +118,12 @@ public class DespesaController implements Serializable {
         calcularSoma();
     }
 
-
-
-
     public void calcularSoma() {
         soma = listaDespesas.stream().mapToDouble(Despesa::getValor).sum();
     }
 
 
-    public void onRowEdit(RowEditEvent event) {
-        Despesa despesaEditada = (Despesa) event.getObject();
-        despDAO.alterar(despesaEditada);
-        for (Despesa despesa : listaDespesas) {
-            if (despesa.getId().equals(despesaEditada.getId())) {
-                despesa.setDescricao(despesaEditada.getDescricao());
-                despesa.setValor(despesaEditada.getValor());
-                break;
-            }
-        }
 
-        FacesMessage msg = new FacesMessage("Despesa editada com sucesso", "Código: " + despesaEditada.getId());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edição cancelada", "Código: " + ((Despesa) event.getObject()).getId());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
 
 
 

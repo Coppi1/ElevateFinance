@@ -19,7 +19,7 @@ public class CategoriaDespesa {
 
     private String descricao;
 
-    @OneToMany (mappedBy = "categDesp")
+    @OneToMany (mappedBy = "categoriaDespesa")
     private List<Despesa> listaDespesas;
 
 
