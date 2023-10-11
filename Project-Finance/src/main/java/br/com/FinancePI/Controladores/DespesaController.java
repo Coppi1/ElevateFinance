@@ -118,11 +118,7 @@ public class DespesaController implements Serializable {
         calcularSoma();
     }
 
-    @PostConstruct
-    public void init() {
 
-        categoriaDespesas = entityManager.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
-    }
 
 
     public void calcularSoma() {
