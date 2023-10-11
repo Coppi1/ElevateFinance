@@ -1,7 +1,10 @@
 package br.com.FinancePI.Controladores;
 
+import br.com.FinancePI.DAO.CategoriaDespesaDAO;
 import br.com.FinancePI.DAO.DespesaDAO;
+import br.com.FinancePI.Entidades.CategoriaDespesa;
 import br.com.FinancePI.Entidades.Despesa;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
@@ -28,6 +31,9 @@ public class DespesaController implements Serializable {
     @Autowired
     DespesaDAO despDAO = new DespesaDAO();
 
+    @Autowired
+    CategoriaDespesaDAO categDAO = new CategoriaDespesaDAO();
+
     @Inject
     private Despesa despesa;
 
@@ -37,6 +43,10 @@ public class DespesaController implements Serializable {
     private double soma;
 
     private List<Despesa> listaDespesas;
+
+    private List<CategoriaDespesa> categoriaDespesas;
+
+
 
 
     public void salvar(){
@@ -107,6 +117,13 @@ public class DespesaController implements Serializable {
         }
         calcularSoma();
     }
+
+    @PostConstruct
+    public void init() {
+
+        categoriaDespesas = entityManager.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
+    }
+
 
     public void calcularSoma() {
         soma = listaDespesas.stream().mapToDouble(Despesa::getValor).sum();

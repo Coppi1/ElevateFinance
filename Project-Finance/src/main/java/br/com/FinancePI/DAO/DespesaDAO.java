@@ -26,6 +26,9 @@ public class DespesaDAO implements Serializable {
     @Transactional
     public void inserir(Despesa despesa){
 
+        LocalDate dataLancamento = LocalDate.now();
+        despesa.setDtLancamento(dataLancamento);
+
 
         entityManager.persist(despesa);
 
