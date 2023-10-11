@@ -1,9 +1,6 @@
 package br.com.FinancePI.DAO;
 
 import br.com.FinancePI.Entidades.Despesa;
-import br.com.FinancePI.Entidades.Receita;
-import jakarta.enterprise.inject.Typed;
-import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
@@ -12,15 +9,14 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
 @Component
 @Data
-public class despesaDAO implements Serializable {
+public class DespesaDAO implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     @Inject
     @PersistenceContext
@@ -30,7 +26,12 @@ public class despesaDAO implements Serializable {
     @Transactional
     public void inserir(Despesa despesa){
 
+        LocalDate dataLancamento = LocalDate.now();
+        despesa.setDtLancamento(dataLancamento);
+
+
         entityManager.persist(despesa);
+
 
     }
 
@@ -57,7 +58,7 @@ public class despesaDAO implements Serializable {
 
     @Transactional
     public List<Despesa> buscarListaDespesa(LocalDate dataInicio, LocalDate dataFim) {
-        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d.cod, d.descricao FROM Despesa d WHERE d.vencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
+        TypedQuery<Despesa> query = entityManager.createQuery("SELECT d FROM Despesa d WHERE d.dtVencimento BETWEEN :dataInicio AND :dataFim", Despesa.class);
         query.setParameter("dataInicio", dataInicio);
         query.setParameter("dataFim", dataFim);
 

@@ -43,6 +43,11 @@
                             <p:inputText id="txDescricao" size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
                                          required="#{despesaController.valorBoolean}" requiredMessage="O campo Descrição é obrigadorio!"/>
 
+                            <p:outputLabel value="Descrição da Despesa:"/>
+                            <p:selectOneMenu value="#{despesaController.despesa.categoriaDespesa}">
+                                <f:selectItems value="#{despesaController.}"/>
+                            </p:selectOneMenu>
+
                             <p:outputLabel value="Data de Vencimento:"/>
                             <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
                                         pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
