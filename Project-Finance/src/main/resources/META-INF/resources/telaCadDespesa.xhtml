@@ -37,7 +37,6 @@
                     <p:panel header="Lançamento de Despesas">
 
                         <p:messages id="msg_confirmacao" closable="true"/>
-
                         <h:panelGrid id="campos" columns="2">
 
                             <p:outputLabel value="Número único:"/>
@@ -58,7 +57,8 @@
 
                             <p:outputLabel value="Tipo da Despesa:"/>
                             <p:selectOneMenu value="#{despesaController.despesa.categoriaDespesa}">
-                                <f:selectItems value="#{despesaController.categoriaDespesas}"/>
+                                <f:selectItem itemLabel="Selecione Um" itemValue="#{null}"/>
+                                <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categoria.cod}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Data de Vencimento:"/>
@@ -78,11 +78,13 @@
                             <p:outputLabel value="Forma de Pagamento:"/>
                             <p:inputText id="txFormaPgto" size="40" maxlength="100"
                                          value="#{despesaController.despesa.formaPGTO}"
-                                         required="#{despesaController.valorBoolean
-                                         }" requiredMessage="O campo nome é obrigadorio!"/>
-
+                                         required="#{despesaController.valorBoolean}"
+                                         requiredMessage="O campo nome é obrigadorio!"/>
 
                         </h:panelGrid>
+
+
+
                         <h:panelGrid columns="4">
                             <p:commandButton value="Salvar"
                                              actionListener="#{despesaController.salvar()}"

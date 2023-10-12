@@ -20,7 +20,7 @@ public class CategoriaDespesaDAO implements Serializable {
 
 
 
-    public List<CategoriaDespesa> categoriaDespesaList(){
+    public List<CategoriaDespesa> listarCategorias(){
 
          Query query = entityManager.createQuery("SELECT c FROM CategoriaDespesa c", CategoriaDespesa.class);
 

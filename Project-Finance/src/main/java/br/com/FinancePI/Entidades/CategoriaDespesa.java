@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Component
 @Data
-public class CategoriaDespesa {
+public class CategoriaDespesa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

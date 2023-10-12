@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -41,6 +42,5 @@ public class Despesa implements Serializable {
 
    // @ManyToOne
    // private Fornecedor fornecedor;
-
 
 }

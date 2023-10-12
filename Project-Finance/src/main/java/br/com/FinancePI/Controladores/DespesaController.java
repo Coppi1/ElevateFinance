@@ -10,6 +10,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.omnifaces.util.Messages;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
-
+@EqualsAndHashCode
 @Component
 @Data
 @ViewScoped
@@ -44,10 +45,19 @@ public class DespesaController implements Serializable {
 
     private List<Despesa> listaDespesas;
 
-    private List<CategoriaDespesa> categoriaDespesas;
+    private List<CategoriaDespesa> listaCategoriaDespesas;
 
 
+    @PostConstruct
+    public void init(){
+        listaCategoriaDespesas = categDAO.listarCategorias();
 
+        despesa.setCategoriaDespesa(null);
+    }
+
+    public void listar(){
+        listaCategoriaDespesas = categDAO.listarCategorias();
+    }
 
     public void salvar(){
 
