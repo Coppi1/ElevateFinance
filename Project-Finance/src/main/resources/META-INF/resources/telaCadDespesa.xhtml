@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
 
 <html lang="en-us"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jc="http://java.sun.com/jsf/core">
+
 
 <h:head>
     <title>Projeto</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputStylesheet name="styles.css"/>
-    <ui:include src="MenuTopo/menuTopo.xhtml" />
+    <ui:include src="MenuTopo/menuTopo.xhtml"/>
+
 </h:head>
 
 <h:body>
@@ -29,44 +37,54 @@
                     <p:panel header="Lançamento de Despesas">
 
                         <p:messages id="msg_confirmacao" closable="true"/>
-
                         <h:panelGrid id="campos" columns="2">
 
                             <p:outputLabel value="Número único:"/>
-                            <p:inputText  size="2" maxlength="5" value="#{despesaController.despesa.cod}"/>
+                            <p:inputText size="2" maxlength="5" readonly="true"
+                                         value="#{despesaController.despesa.id}"/>
 
                             <p:outputLabel value="Fornecedor/Origem:"/>
-                            <p:inputText id="txFornecedor" size="40" maxlength="100" value="#{despesaController.despesa.fornecedor}"
-                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Fornecedor é obrigadorio!"/>
+                            <p:inputText id="txFornecedor" size="40" maxlength="100"
+                                         value="#{despesaController.despesa.fornecedor}"
+                                         required="#{despesaController.valorBoolean}"
+                                         requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
                             <p:outputLabel value="Descrição da Despesa:"/>
-                            <p:inputText id="txDescricao" size="40" maxlength="100" value="#{despesaController.despesa.descricao}"
-                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Descrição é obrigadorio!"/>
+                            <p:inputText id="txDescricao" size="40" maxlength="100"
+                                         value="#{despesaController.despesa.descricao}"
+                                         required="#{despesaController.valorBoolean}"
+                                         requiredMessage="O campo Descrição é obrigadorio!"/>
 
-                            <p:outputLabel value="Descrição da Despesa:"/>
+                            <p:outputLabel value="Tipo da Despesa:"/>
                             <p:selectOneMenu value="#{despesaController.despesa.categoriaDespesa}">
-                                <f:selectItems value="#{despesaController.}"/>
+                                <f:selectItem itemLabel="Selecione Um" itemValue="#{null}"/>
+                                <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categoria.cod}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Data de Vencimento:"/>
-                            <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100"  readonlyInput="true"
-                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.vencimento}"
-                                        required="#{despesaController.valorBoolean}" requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                            <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.despesa.dtVencimento}"
+                                        required="#{despesaController.valorBoolean}"
+                                        requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
                             <p:outputLabel value="Valor:"/>
                             <p:inputText id="txValor" value="#{despesaController.despesa.valor}"
-                                         required="#{despesaController.valorBoolean}" requiredMessage="O campo Valor é obrigadorio!"
+                                         required="#{despesaController.valorBoolean}"
+                                         requiredMessage="O campo Valor é obrigadorio!"
                                          converterMessage="Informe um valor válido! (apenas números)">
                                 <f:convertNumber type="currency" pattern="0.00"/>
                             </p:inputText>
 
                             <p:outputLabel value="Forma de Pagamento:"/>
-                            <p:inputText id="txFormaPgto" size="40" maxlength="100" value="#{despesaController.despesa.formaPgto}"
-                                         required="#{despesaController.valorBoolean
-                                         }" requiredMessage="O campo nome é obrigadorio!"/>
-
+                            <p:inputText id="txFormaPgto" size="40" maxlength="100"
+                                         value="#{despesaController.despesa.formaPGTO}"
+                                         required="#{despesaController.valorBoolean}"
+                                         requiredMessage="O campo nome é obrigadorio!"/>
 
                         </h:panelGrid>
+
+
+
                         <h:panelGrid columns="4">
                             <p:commandButton value="Salvar"
                                              actionListener="#{despesaController.salvar()}"
@@ -89,42 +107,58 @@
                 </p:splitterPanel>
                 <p:splitterPanel styleClass="flex align-items-center justify-content-center">
                     <p:panel header="Movimentação - Despesas">
-                        <h:form>
-                            <h:panelGrid columns="2">
+                        <h:panelGrid columns="2">
 
-                                <p:outputLabel value="De:" />
-                                <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
-                                            pattern="dd/MM/yyyy" value="#{despesaController.dataInicio}"
-                                            required="false" requiredMessage="O campo data de vencimento é obrigatório!" />
+                            <p:outputLabel value="De:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.dataInicio}"
+                                        required="false" requiredMessage="O campo data de vencimento é obrigatório!"/>
 
-                                <p:outputLabel value="Até:" />
+                            <p:outputLabel value="Até:"/>
 
-                                <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
-                                            pattern="dd/MM/yyyy" value="#{despesaController.dataFim}"
-                                            required="false" requiredMessage="O campo data de vencimento é obrigatório!" />
+                            <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{despesaController.dataFim}"
+                                        required="false" requiredMessage="O campo data de vencimento é obrigatório!"/>
 
-                                <p:commandButton value="Buscar"
-                                                 actionListener="#{despesaController.buscarListaDespesa()}" update="tabela" />
-                            </h:panelGrid>
+                            <p:commandButton value="Buscar"
+                                             actionListener="#{despesaController.buscarListaDespesa()}"
+                                             update="tabela"/>
+                        </h:panelGrid>
 
-                            <h:panelGrid>
-                                <p:dataTable id="tabela" value="#{tabDespesaController.despesa}" var="Despesa"
-                                rows="5" paginatorPosition="bottom">
-                                    <p:column headerText="Código">
-                                        <h:outputText value="#{tabDespesaController.despesa.cod}" />
-                                    </p:column>
-                                    <p:column headerText="Descrição">
-                                        <h:outputText value="#{tabDespesaController.despesa.descricao}" />
-                                    </p:column>
-                                </p:dataTable>
-                            </h:panelGrid>
-                        </h:form>
+                        <h:panelGrid>
+                            <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="Despesa" rows="20"
+                                         paginator="true" style="background: blue" rowExpandMode="true"
+                                         styleClass="mt-2"
+                                         editable="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                                <p:column headerText="Nº Único">
+                                    #{Despesa.id}
+                                </p:column>
+                                <p:column headerText="Descrição">
+                                    #{Despesa.descricao}
+                                </p:column>
+                                <p:column headerText="Valor">
+                                    #{Despesa.valor}
+                                </p:column>
+                                <p:column headerText="Fornecedor">
+                                    #{Despesa.fornecedor}
+                                </p:column>
+                                <p:column headerText="Vencimento">
+                                    #{Despesa.dtVencimento}
+                                </p:column>
+                                <p:column headerText="Forma de Pagamento">
+                                    #{Despesa.formaPGTO}
+                                </p:column>
+                                <f:facet name="footer">
+                                    <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
+                                </f:facet>
+
+                            </p:dataTable>
+                        </h:panelGrid>
                     </p:panel>
                 </p:splitterPanel>
             </p:splitter>
         </div>
-
     </h:form>
-
 </h:body>
 </html>
