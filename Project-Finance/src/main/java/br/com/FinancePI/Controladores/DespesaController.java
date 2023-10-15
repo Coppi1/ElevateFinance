@@ -57,21 +57,16 @@ public class DespesaController implements Serializable {
 
     }
 
-    public void listar(){
-        listaCategoriaDespesas = categDAO.listarCategorias();
-    }
 
     public void salvar(){
 
         valorBoolean = "true";
         despesa.setCategoriaDespesa(categoriaDespesa);
         despDAO.inserir(despesa);
+        despesa = new Despesa();
         Messages.addFlashGlobalInfo("Registro salvo com sucesso");
     }
 
-    private void extracted() {
-        despesa = new Despesa();
-    }
 
     public void excluir() {
 
@@ -93,22 +88,22 @@ public class DespesaController implements Serializable {
 
     }
 
-    public void buscarDespesa() {
+   // public void buscarDespesa() {
 
-        valorBoolean = "false";
+      //  valorBoolean = "false";
 
-        if (despesa.getId() != null) {
-            Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getId());
-            if (despesaEncontrada != null) {
-                despesa = despesaEncontrada;
-            } else {
-                Messages.addFlashGlobalError("Registro não encontrado");
-            }
-        } else {
-            Messages.addFlashGlobalError("Número único da despesa não especificado");
-        }
+     //   if (despesa.getId() != null) {
+     //       Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getId());
+       //     if (despesaEncontrada != null) {
+    //            despesa = despesaEncontrada;
+      //      } else {
+     //           Messages.addFlashGlobalError("Registro não encontrado");
+     //       }
+     //   } else {
+       //     Messages.addFlashGlobalError("Número único da despesa não especificado");
+    //    }
 
-    }
+ //  }
 
 
 
@@ -140,13 +135,17 @@ public class DespesaController implements Serializable {
 
 
     public void onRowSelect(SelectEvent<Despesa> event) {
-        FacesMessage msg = new FacesMessage("Product Selected", String.valueOf(event.getObject().getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        //FacesMessage msg = new FacesMessage("Product Selected", String.valueOf(event.getObject().getId()));
+      // FacesContext.getCurrentInstance().addMessage(null, msg);
+        despesa = new Despesa();
+        Despesa despesaSelecionada = despDAO.buscarDespesaPorId(event.getObject().getId());
+        despesa = despesaSelecionada;
+
     }
 
     public void onRowUnselect(UnselectEvent<Despesa> event) {
-        FacesMessage msg = new FacesMessage("Product Unselected", String.valueOf(event.getObject().getId()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        //FacesMessage msg = new FacesMessage("Product Unselected", String.valueOf(event.getObject().getId()));
+     //   FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
 

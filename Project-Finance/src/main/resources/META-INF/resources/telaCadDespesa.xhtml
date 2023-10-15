@@ -32,12 +32,12 @@
 
         <div class="Splitter">
             <p:splitter style="height: 300px" styleClass="mb-5">
-                <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                <p:splitterPanel id="splitterCampos" styleClass="flex align-items-center justify-content-center">
 
                     <p:panel header="Lançamento de Despesas">
 
                         <p:messages id="msg_confirmacao" closable="true"/>
-                        <h:panelGrid id="campos" columns="2">
+                        <h:panelGrid id="campos" columns="2" rendered="true">
 
                             <p:outputLabel value="Número único:"/>
                             <p:inputText size="2" maxlength="5" readonly="true"
@@ -83,19 +83,13 @@
 
                         </h:panelGrid>
 
-
-
-                        <h:panelGrid columns="4">
+                        <h:panelGrid columns="3">
                             <p:commandButton value="Salvar"
                                              actionListener="#{despesaController.salvar()}"
                                              update="msg_confirmacao campos"/>
 
                             <p:commandButton value="Excluir"
                                              actionListener="#{despesaController.excluir()}"
-                                             update="msg_confirmacao campos"/>
-
-                            <p:commandButton value="Buscar"
-                                             actionListener="#{despesaController.buscarDespesa()}"
                                              update="msg_confirmacao campos"/>
 
                             <p:commandButton value="Alterar"
@@ -131,9 +125,10 @@
                                          styleClass="mt-2"
                                          editable="true"
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                         selectionMode="single" selection="#{despesaController.listaDespesas}" rowKey="#{Despesa.id}">
-                                <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs"/>
-                                <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs"/>
+                                         selectionMode="single" selection="#{despesaController.listaDespesas}" rowKey="#{despesaController}">
+
+                                <p:ajax event="rowSelect" listener="#{despesaController.onRowSelect}" update="splitterCampos"/>
+                                <p:ajax event="rowUnselect" listener="#{despesaController.onRowUnselect}" update="splitterCampos"/>
                                 <p:column headerText="Nº Único">
                                     #{Despesa.id}
                                 </p:column>
