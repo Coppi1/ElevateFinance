@@ -5,16 +5,20 @@ import br.com.FinancePI.DAO.DespesaDAO;
 import br.com.FinancePI.Entidades.CategoriaDespesa;
 import br.com.FinancePI.Entidades.Despesa;
 import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.control.RequestContextController;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
 import org.omnifaces.util.Messages;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.model.DialogFrameworkOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,13 +56,13 @@ public class DespesaController implements Serializable {
     private CategoriaDespesa categoriaDespesa;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         listaCategoriaDespesas = categDAO.listarCategorias();
 
     }
 
 
-    public void salvar(){
+    public void salvar() {
 
         valorBoolean = "true";
         despesa.setCategoriaDespesa(categoriaDespesa);
@@ -88,23 +92,22 @@ public class DespesaController implements Serializable {
 
     }
 
-   // public void buscarDespesa() {
+    // public void buscarDespesa() {
 
-      //  valorBoolean = "false";
+    //  valorBoolean = "false";
 
-     //   if (despesa.getId() != null) {
-     //       Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getId());
-       //     if (despesaEncontrada != null) {
+    //   if (despesa.getId() != null) {
+    //       Despesa despesaEncontrada = despDAO.buscarDespesaPorId(despesa.getId());
+    //     if (despesaEncontrada != null) {
     //            despesa = despesaEncontrada;
-      //      } else {
-     //           Messages.addFlashGlobalError("Registro não encontrado");
-     //       }
-     //   } else {
-       //     Messages.addFlashGlobalError("Número único da despesa não especificado");
+    //      } else {
+    //           Messages.addFlashGlobalError("Registro não encontrado");
+    //       }
+    //   } else {
+    //     Messages.addFlashGlobalError("Número único da despesa não especificado");
     //    }
 
- //  }
-
+    //  }
 
 
     public void alterarDespesa() {
@@ -132,22 +135,18 @@ public class DespesaController implements Serializable {
         soma = listaDespesas.stream().mapToDouble(Despesa::getValor).sum();
     }
 
+    @Inject
+    private EditDespesaController editDespesaController;
 
+    public void viewProducts() {
+        // Obter a despesa selecionada na tabela
+        Despesa despesaSelecionada = (Despesa) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("despesaSelecionada");
 
-    public void onRowSelect(SelectEvent<Despesa> event) {
-        //FacesMessage msg = new FacesMessage("Product Selected", String.valueOf(event.getObject().getId()));
-      // FacesContext.getCurrentInstance().addMessage(null, msg);
-        despesa = new Despesa();
-        Despesa despesaSelecionada = despDAO.buscarDespesaPorId(event.getObject().getId());
-        despesa = despesaSelecionada;
+        // Inicializar o controlador e definir o valor do atributo despesa
+        editDespesaController.init();
 
+        // Abrir a caixa de diálogo para editar a despesa
+        PrimeFaces.current().executeScript("PF('editDespesaDialog').show();");
     }
-
-    public void onRowUnselect(UnselectEvent<Despesa> event) {
-        //FacesMessage msg = new FacesMessage("Product Unselected", String.valueOf(event.getObject().getId()));
-     //   FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
-
 
 }

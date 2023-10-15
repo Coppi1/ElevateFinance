@@ -124,11 +124,7 @@
                                          paginator="true" style="background: blue" rowExpandMode="true"
                                          styleClass="mt-2"
                                          editable="true"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                         selectionMode="single" selection="#{despesaController.listaDespesas}" rowKey="#{despesaController}">
-
-                                <p:ajax event="rowSelect" listener="#{despesaController.onRowSelect}" update="splitterCampos"/>
-                                <p:ajax event="rowUnselect" listener="#{despesaController.onRowUnselect}" update="splitterCampos"/>
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
                                 <p:column headerText="Nº Único">
                                     #{Despesa.id}
                                 </p:column>
@@ -147,6 +143,9 @@
                                 <p:column headerText="Forma de Pagamento">
                                     #{Despesa.formaPGTO}
                                 </p:column>
+                                <p:column>
+                                    <p:commandButton icon="pi-file-edit" actionListener="#{despesaController.viewProducts()}" styleClass="mr-2 ui-button-outlined"/>
+                                </p:column>
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
                                 </f:facet>
@@ -154,9 +153,17 @@
                             </p:dataTable>
                         </h:panelGrid>
                     </p:panel>
+                    <p:dialog header="Editar Despesa" widgetVar="editDespesaDialog">
+                        <p:inputText value="#{editDespesaController.despesa.descricao}" />
+                        <p:inputText value="#{editDespesaController.despesa.valor}" />
+                        <p:commandButton value="Salvar" actionListener="#{editDespesaController.salvar}" />
+                        <p:commandButton value="Cancelar" actionListener="#{editDespesaController.cancelar}" />
+                    </p:dialog>
                 </p:splitterPanel>
             </p:splitter>
         </div>
+
     </h:form>
+
 </h:body>
 </html>
