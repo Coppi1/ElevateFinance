@@ -56,9 +56,9 @@
                                          requiredMessage="O campo Descrição é obrigadorio!"/>
 
                             <p:outputLabel value="Tipo da Despesa:"/>
-                            <p:selectOneMenu value="#{despesaController.despesa.categoriaDespesa}">
-                                <f:selectItem itemLabel="Selecione Um" itemValue="#{null}"/>
-                                <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria" itemLabel="#{categoria.descricao}" itemValue="#{categoria.cod}"/>
+                            <p:selectOneMenu value="#{despesaController.categoriaDespesa}" converter="omnifaces.SelectItemsConverter">
+                                <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
+                                <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria" itemLabel="#{categoria.descricao}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Data de Vencimento:"/>
@@ -130,7 +130,10 @@
                                          paginator="true" style="background: blue" rowExpandMode="true"
                                          styleClass="mt-2"
                                          editable="true"
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         selectionMode="single" selection="#{despesaController.listaDespesas}" rowKey="#{Despesa.id}">
+                                <p:ajax event="rowSelect" listener="#{dtSelectionView.onRowSelect}" update=":form:msgs"/>
+                                <p:ajax event="rowUnselect" listener="#{dtSelectionView.onRowUnselect}" update=":form:msgs"/>
                                 <p:column headerText="Nº Único">
                                     #{Despesa.id}
                                 </p:column>

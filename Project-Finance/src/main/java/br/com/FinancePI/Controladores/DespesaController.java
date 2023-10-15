@@ -13,6 +13,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.omnifaces.util.Messages;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
+import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,12 +49,12 @@ public class DespesaController implements Serializable {
 
     private List<CategoriaDespesa> listaCategoriaDespesas;
 
+    private CategoriaDespesa categoriaDespesa;
 
     @PostConstruct
     public void init(){
         listaCategoriaDespesas = categDAO.listarCategorias();
 
-        despesa.setCategoriaDespesa(null);
     }
 
     public void listar(){
@@ -62,10 +64,13 @@ public class DespesaController implements Serializable {
     public void salvar(){
 
         valorBoolean = "true";
-
+        despesa.setCategoriaDespesa(categoriaDespesa);
         despDAO.inserir(despesa);
-        despesa = new Despesa();
         Messages.addFlashGlobalInfo("Registro salvo com sucesso");
+    }
+
+    private void extracted() {
+        despesa = new Despesa();
     }
 
     public void excluir() {
@@ -134,6 +139,15 @@ public class DespesaController implements Serializable {
 
 
 
+    public void onRowSelect(SelectEvent<Despesa> event) {
+        FacesMessage msg = new FacesMessage("Product Selected", String.valueOf(event.getObject().getId()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void onRowUnselect(UnselectEvent<Despesa> event) {
+        FacesMessage msg = new FacesMessage("Product Unselected", String.valueOf(event.getObject().getId()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
 
 

@@ -24,4 +24,8 @@ public class CategoriaDespesa implements Serializable {
     private List<Despesa> listaDespesas;
 
 
+    @Override
+    public String toString() {
+        return String.format("%s[cod=%d]", getClass().getSimpleName(), getCod());
+    }
 }
