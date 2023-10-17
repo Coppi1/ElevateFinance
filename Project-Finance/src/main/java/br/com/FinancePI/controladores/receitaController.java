@@ -1,7 +1,10 @@
-package br.com.FinancePI.Controladores;
+package br.com.FinancePI.controladores;
 
-import br.com.FinancePI.DAO.ReceitaDAO;
+import br.com.FinancePI.DAO.despesaDAO;
+import br.com.FinancePI.DAO.receitaDAO;
+import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Receita;
+import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
@@ -11,19 +14,20 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
 @Component
 @Data
 @ViewScoped
-public class ReceitaController implements Serializable {
+public class receitaController implements Serializable {
 
 
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    ReceitaDAO recDAO = new ReceitaDAO();
+    receitaDAO recDAO = new receitaDAO();
 
     @Inject
     private Receita receita;

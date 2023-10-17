@@ -1,32 +1,26 @@
 package br.com.FinancePI.Entidades;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
 
 @Entity
-@Component
+@ViewScoped
 @Data
-public class Receita implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
+@Component
+public class Receita {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String descricao;
-
-    @Temporal(TemporalType.DATE)
-    private LocalDate dtLancamento;
-
+    private LocalDate dataLancamento;
     private Double valorBruto;
 
 
