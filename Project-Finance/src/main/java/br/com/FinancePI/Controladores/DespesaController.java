@@ -8,11 +8,13 @@ import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.control.RequestContextController;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.Flash;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.RowEditEvent;
@@ -117,6 +119,11 @@ public class DespesaController implements Serializable {
         despDAO.alterar(despesa);
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");
 
+        despesaEdicao = new Despesa();
+
+        buscarListaDespesa();
+
+
     }
 
     public void buscarListaDespesa() {
@@ -135,18 +142,25 @@ public class DespesaController implements Serializable {
         soma = listaDespesas.stream().mapToDouble(Despesa::getValor).sum();
     }
 
-    @Inject
-    private EditDespesaController editDespesaController;
 
-    public void viewProducts() {
-        // Obter a despesa selecionada na tabela
-        Despesa despesaSelecionada = (Despesa) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("despesaSelecionada");
 
-        // Inicializar o controlador e definir o valor do atributo despesa
-        editDespesaController.init();
+    private Despesa despesaEdicao = new Despesa();
+
+    public void viewProducts(Despesa despesaSelecionada) {
+
+        despesaEdicao = despesaSelecionada;
 
         // Abrir a caixa de diálogo para editar a despesa
         PrimeFaces.current().executeScript("PF('editDespesaDialog').show();");
+
+
     }
+
+    public void cancelar() {
+        // Fechar a caixa de diálogo sem salvar as alterações
+        PrimeFaces.current().executeScript("PF('editDespesaDialog').hide();");
+    }
+
+
 
 }
