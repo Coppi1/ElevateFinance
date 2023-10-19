@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 @ViewScoped
 @Component
 @Data
-public class receitaDAO {
+public class ReceitaDAO {
 
     @PersistenceContext
     private  EntityManager entityManager;
