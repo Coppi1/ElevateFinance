@@ -11,11 +11,14 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 
-@ViewScoped
+
 @Component
 @Data
-public class ReceitaDAO {
+public class ReceitaDAO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @PersistenceContext
     private  EntityManager entityManager;

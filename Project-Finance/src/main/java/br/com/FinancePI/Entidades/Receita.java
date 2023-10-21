@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Entity
-@ViewScoped
-@Data
 @Component
+@Data
 public class Receita {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

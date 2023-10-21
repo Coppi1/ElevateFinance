@@ -19,7 +19,9 @@
         <div class="menu-bar">
         <p:menubar style="background-color: lightcyan" styleClass="menu-bar">
             <p:menuitem>
-                <p:graphicImage library="IMG" name="logo.png" alt="Logo" style="width: 180px; height: 65px;"/>
+
+                <p:graphicImage library="IMG" name="logo.png" alt="Logo" style="width: 180px; height: 65px;" />
+
             </p:menuitem>
             <p:submenu label="Lançamentos">
                 <p:menuitem value="Lançamento de Despesas" outcome="telaLancamentoDespesa.xhtml"/>
@@ -37,10 +39,13 @@
             </p:submenu>
 
             <f:facet name="options">
-                <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                <p:menubar>
+                    <p:menuitem value="Logout" outcome="telaInicial.xhtml"/>
+                </p:menubar>
             </f:facet>
 
         </p:menubar>
+        </div>
     </h:form>
 
 </body>

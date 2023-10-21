@@ -14,7 +14,8 @@ import java.util.List;
 @Component
 @Data
 public class CategoriaDespesaDAO implements Serializable {
-   // @Inject
+
+    @Inject
     @PersistenceContext
     private EntityManager entityManager;
 

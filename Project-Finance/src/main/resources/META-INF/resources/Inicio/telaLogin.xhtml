@@ -14,8 +14,8 @@
     <title>Tela de Login</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
-    <h:outputStylesheet name="MenuTopo/menuStyle.css"/>
-
+    <h:outputStylesheet name="/styles.css"/>
+    <ui:include src="../MenuTopo/menuTopo.xhtml"/>
 </h:head>
 <body>
 
@@ -27,20 +27,19 @@
 
         <h:panelGrid>
 
-            <div class="card">
                 <h:form>
                     <p:messages id="msgs"/>
 
                     <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3">
                         <p:outputLabel for="Login" value="Login:"/>
-                        <p:inputText id="Login" value="#{remoteValidationView.Login}" required="true"
+                        <p:inputText id="Login" value="#{LoginController.login.login}" required="true"
                                      label="Login">
                             <f:validateLength minimum="2"/>
                         </p:inputText>
                         <p:message for="Login" display="icon"/>
 
                         <p:outputLabel for="Senha" value="Senha:"/>
-                        <p:inputText id="Senha" value="#{remoteValidationView.Senha}" label="Senha"
+                        <p:inputText id="Senha" value="#{LoginController.login.senha}" label="Senha"
                                      required="true">
                             <f:validateLength minimum="2"/>
                             <p:ajax update="msgSenha" event="keyup"/>
@@ -49,13 +48,10 @@
 
                     </h:panelGrid>
 
-                    <p:commandButton value="Salvar" update="@form" action="#{remoteValidationView.save}"
-                                     icon="pi pi-check"/>
+
                 </h:form>
-            </div>
 
         </h:panelGrid>
-
 
     </p:panel>
 
