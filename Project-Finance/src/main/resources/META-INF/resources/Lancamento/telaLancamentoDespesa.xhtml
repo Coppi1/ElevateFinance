@@ -20,9 +20,8 @@
     <title>Projeto</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
-    <h:outputStylesheet name="styles.css"/>
-    <ui:include src="MenuTopo/menuTopo.xhtml"/>
-
+    <h:outputStylesheet name="/styles.css"/>
+    <ui:include src="../MenuTopo/menuTopo.xhtml"/>
 </h:head>
 
 <h:body>
@@ -55,7 +54,7 @@
                                          required="#{despesaController.valorBoolean}"
                                          requiredMessage="O campo Descrição é obrigadorio!"/>
 
-                            <p:outputLabel value="Tipo da Despesa:"/>
+                            <p:outputLabel value="Natureza:"/>
                             <p:selectOneMenu value="#{despesaController.categoriaDespesa}"
                                              converter="omnifaces.SelectItemsConverter">
                                 <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
@@ -146,6 +145,9 @@
                                 <p:column headerText="Forma de Pagamento">
                                     #{Despesa.formaPGTO}
                                 </p:column>
+                                <p:column headerText="Natureza">
+                                    #{Despesa.categoriaDespesa}
+                                </p:column>
                                 <p:column>
                                     <p:commandButton icon="pi-file-edit"
                                                      actionListener="#{despesaController.viewProducts(Despesa)}"
@@ -177,7 +179,7 @@
                                              value="#{despesaController.despesaEdicao.descricao}"
                                              requiredMessage="O campo Descrição é obrigadorio!"/>
 
-                                <p:outputLabel value="Tipo da Despesa:"/>
+                                <p:outputLabel value="Natureza:"/>
                                 <p:selectOneMenu value="#{despesaController.despesaEdicao.categoriaDespesa}"
                                                  converter="omnifaces.SelectItemsConverter">
                                     <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
@@ -213,7 +215,7 @@
 
                             </p:panelGrid>
                     </p:dialog>
-                </p:splitterPanel>
+                </p:splitterPanel>,
             </p:splitter>
         </div>
 
