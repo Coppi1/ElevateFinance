@@ -64,9 +64,7 @@ public class DespesaController implements Serializable {
     }
 
 
-    public void excluir() {
-
-        valorBoolean = "false";
+    public void excluir(int id) {
 
         if (despesa.getId() != null) {
 
@@ -84,7 +82,7 @@ public class DespesaController implements Serializable {
 
     }
 
-    // public void buscarDespesa() {
+    // public void buscarDespesaPorID() {
 
     //  valorBoolean = "false";
 
@@ -146,10 +144,13 @@ public class DespesaController implements Serializable {
 
     }
 
-    public void cancelar() {
+   // public void cancelar() {
         // Fechar a caixa de diálogo sem salvar as alterações
-        PrimeFaces.current().executeScript("PF('editDespesaDialog').hide();");
-    }
+  //      PrimeFaces.current().executeScript("PF('editDespesaDialog').hide();");
+   // }
+
+
+
 
 
 

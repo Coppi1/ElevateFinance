@@ -89,18 +89,10 @@
                                              actionListener="#{despesaController.salvar()}"
                                              update="msg_confirmacao campos"/>
 
-                            <p:commandButton value="Excluir"
-                                             actionListener="#{despesaController.excluir()}"
-                                             update="msg_confirmacao campos"/>
-
-                            <p:commandButton value="Alterar"
-                                             actionListener="#{despesaController.alterarDespesa()}"
-                                             update="msg_confirmacao campos"/>
                         </h:panelGrid>
 
                     </p:panel>
                 </p:splitterPanel>
-
                 <p:splitterPanel id="splitterMovimentacao" styleClass="flex align-items-center justify-content-center">
                     <p:panel header="Movimentação - Despesas">
                         <h:panelGrid columns="2">
@@ -152,7 +144,12 @@
                                     <p:commandButton icon="pi-file-edit"
                                                      actionListener="#{despesaController.viewProducts(Despesa)}"
                                                      styleClass="mr-2 ui-button-outlined"
-                                                     update=":formulario:editDespesa"/>
+                                                     update="tabela"/>
+                                    <p:commandButton icon="pi-file-edit"
+
+                                                     styleClass="mr-2 ui-button-outlined"
+                                                     update="tabela"/>
+
                                 </p:column>
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
@@ -162,7 +159,7 @@
                         </h:panelGrid>
                     </p:panel>
 
-                    <p:dialog width="750" header="Editar Despesa" widgetVar="editDespesaDialog" closable="false">
+                    <p:dialog width="750" header="Editar Despesa" widgetVar="editDespesaDialog" closable="true">
                             <p:messages id="msg_edit" closable="true"/>
                             <p:panelGrid id="editDespesa" columns="2">
                                 <p:outputLabel value="Número único:"/>
@@ -208,14 +205,9 @@
                                 <p:commandButton value="Salvar"
                                                  actionListener="#{despesaController.alterarDespesa()}"
                                                  update="msg_edit tabela"/>
-
-                                <p:commandButton value="Cancelar"
-                                                 actionListener="#{despesaController.cancelar()}"
-                                                 process="tabela" />
-
                             </p:panelGrid>
                     </p:dialog>
-                </p:splitterPanel>,
+                </p:splitterPanel>
             </p:splitter>
         </div>
 
