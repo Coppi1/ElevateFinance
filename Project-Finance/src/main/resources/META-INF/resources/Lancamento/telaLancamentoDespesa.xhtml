@@ -36,7 +36,7 @@
                     <p:panel header="Lançamento de Despesas">
 
                         <p:messages id="msg_confirmacao" closable="true"/>
-                        <h:panelGrid id="campos" columns="2" rendered="true">
+                        <h:panelGrid id="campos" columns="2">
 
                             <p:outputLabel value="Número único:"/>
                             <p:inputText size="2" maxlength="5" readonly="true"
@@ -49,10 +49,10 @@
                                          requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
                             <p:outputLabel value="Descrição da Despesa:"/>
-                            <p:inputText id="txDescricao" size="40" maxlength="100"
-                                         value="#{despesaController.despesa.descricao}"
-                                         required="#{despesaController.valorBoolean}"
-                                         requiredMessage="O campo Descrição é obrigadorio!"/>
+                            <p:inputTextarea id="txDescricao" maxlength="500" rows="6" cols="53"
+                                             value="#{despesaController.despesa.descricao}"
+                                             required="#{despesaController.valorBoolean}"
+                                             requiredMessage="O campo Descrição é obrigadorio!"/>
 
                             <p:outputLabel value="Natureza:"/>
                             <p:selectOneMenu value="#{despesaController.categoriaDespesa}"
@@ -94,7 +94,7 @@
                     </p:panel>
                 </p:splitterPanel>
                 <p:splitterPanel id="splitterMovimentacao" styleClass="flex align-items-center justify-content-center">
-                    <p:panel header="Movimentação - Despesas">
+                    <p:panel id="panelVisualizacao" header="Movimentação - Despesas">
                         <h:panelGrid columns="2">
 
                             <p:outputLabel value="De:"/>
@@ -138,18 +138,16 @@
                                     #{Despesa.formaPGTO}
                                 </p:column>
                                 <p:column headerText="Natureza">
-                                    #{Despesa.categoriaDespesa}
+                                    #{Despesa.categoriaDespesa.descricao}
                                 </p:column>
                                 <p:column>
-                                    <p:commandButton icon="pi-file-edit"
-                                                     actionListener="#{despesaController.viewProducts(Despesa)}"
-                                                     styleClass="mr-2 ui-button-outlined"
-                                                     update="tabela"/>
-                                    <p:commandButton icon="pi-file-edit"
+                                    <p:commandButton icon="pi pi-search" styleClass="rounded-button ui-button-success"
+                                                     actionListener="#{despesaController.verDespesa(Despesa)}"
+                                                     update=":formulario:editDespesa"/>
 
-                                                     styleClass="mr-2 ui-button-outlined"
+                                    <p:commandButton icon="pi pi-times" styleClass="rounded-button ui-button-danger"
+                                                     actionListener="#{despesaController.excluirDespesa(Despesa)}"
                                                      update="tabela"/>
-
                                 </p:column>
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
@@ -159,7 +157,9 @@
                         </h:panelGrid>
                     </p:panel>
 
-                    <p:dialog width="750" header="Editar Despesa" widgetVar="editDespesaDialog" closable="true">
+                    <p:dialog width="950" header="Visualizar / Editar Despesa" widgetVar="editDespesaDialog"
+                              closable="true">
+                        <p:panel>
                             <p:messages id="msg_edit" closable="true"/>
                             <p:panelGrid id="editDespesa" columns="2">
                                 <p:outputLabel value="Número único:"/>
@@ -172,9 +172,9 @@
                                              requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
                                 <p:outputLabel value="Descrição da Despesa:"/>
-                                <p:inputText size="40" maxlength="100"
-                                             value="#{despesaController.despesaEdicao.descricao}"
-                                             requiredMessage="O campo Descrição é obrigadorio!"/>
+                                <p:inputTextarea maxlength="500" rows="6" cols="53"
+                                                 value="#{despesaController.despesaEdicao.descricao}"
+                                                 requiredMessage="O campo Descrição é obrigadorio!"/>
 
                                 <p:outputLabel value="Natureza:"/>
                                 <p:selectOneMenu value="#{despesaController.despesaEdicao.categoriaDespesa}"
@@ -206,6 +206,7 @@
                                                  actionListener="#{despesaController.alterarDespesa()}"
                                                  update="msg_edit tabela"/>
                             </p:panelGrid>
+                        </p:panel>
                     </p:dialog>
                 </p:splitterPanel>
             </p:splitter>

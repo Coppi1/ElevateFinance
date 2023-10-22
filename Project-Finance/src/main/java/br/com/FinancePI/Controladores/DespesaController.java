@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode
@@ -47,11 +48,14 @@ public class DespesaController implements Serializable {
 
     private CategoriaDespesa categoriaDespesa;
 
+    private Despesa despesaEdicao = new Despesa();
+
     @PostConstruct
     public void init() {
         listaCategoriaDespesas = categDAO.listarCategorias();
 
     }
+
 
 
     public void salvar() {
@@ -64,20 +68,11 @@ public class DespesaController implements Serializable {
     }
 
 
-    public void excluir(int id) {
+    public void excluirDespesa(Despesa despesaSelecionada) {
 
-        if (despesa.getId() != null) {
+     despDAO.excluir(despesaSelecionada);
 
-            Despesa despesaParaExcluir = despDAO.buscarDespesaPorId(despesa.getId());
-            if (despesaParaExcluir != null) {
-                despDAO.excluir(despesaParaExcluir);
-                Messages.addFlashGlobalInfo("Registro excluído com sucesso");
-            } else {
-                Messages.addFlashGlobalError("Registro não encontrado");
-            }
-        } else {
-            Messages.addFlashGlobalError("Número único da despesa não especificado");
-        }
+     listaDespesas = despDAO.buscarListaDespesa(dataInicio, dataFim);
 
 
     }
@@ -104,12 +99,11 @@ public class DespesaController implements Serializable {
 
         valorBoolean = "true";
 
-        despDAO.alterar(despesa);
+        despDAO.alterar(despesaEdicao);
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");
 
         despesaEdicao = new Despesa();
 
-        buscarListaDespesa();
 
 
     }
@@ -132,9 +126,7 @@ public class DespesaController implements Serializable {
 
 
 
-    private Despesa despesaEdicao = new Despesa();
-
-    public void viewProducts(Despesa despesaSelecionada) {
+    public void verDespesa(Despesa despesaSelecionada) {
 
         despesaEdicao = despesaSelecionada;
 
