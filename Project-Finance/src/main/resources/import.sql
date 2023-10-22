@@ -6,3 +6,14 @@ insert into despesa (descricao, dt_vencimento, formapgto, fornecedor, valor, dt_
 
 
 
+
+insert into categoria_receita (descricao) values ('Serviços Prestados');
+insert into categoria_receita (descricao) values ('Rendimento de Aplicação');
+insert into categoria_receita (descricao) values ('Atendimento Realizado');
+insert into categoria_receita (descricao) values ('Outros');
+
+
+insert into receita (formapgto, data_lancamento, descricao, valor, categoria_receita_cod) values ('Boleto', '2023-10-22', 'Apoio Administrativo', 10000, 1);
+insert into receita (formapgto, data_lancamento, descricao, valor, categoria_receita_cod) values ('Banco BX','2022-09-02', 'Transferencia', 592, 2);
+insert into receita (formapgto, data_lancamento, descricao, valor, categoria_receita_cod) values ('Pix', '2023-10-21', 'Consultoria',5000, 3);
+insert into receita (formapgto, data_lancamento, descricao, valor, categoria_receita_cod) values ('Pix', '2023-04-20', 'Adiantamento',880, 4);

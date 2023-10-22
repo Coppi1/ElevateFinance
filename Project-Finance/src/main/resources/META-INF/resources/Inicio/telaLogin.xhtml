@@ -7,57 +7,54 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jc="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>Tela de Login</title>
+    <title>Projeto</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputStylesheet name="/styles.css"/>
-    <ui:include src="../MenuTopo/menuTopo.xhtml"/>
 </h:head>
-<body>
 
-<h:form>
+<h:body>
+    <h:form>
+        <p:panel header="Entre ou Cadastre-se">
+            <p:messages id="mensagem" closable="true"/>
 
-    <p:messages id="mensagem" closable="true"/>
+            <div class="card">
+                <h5>Bem Vindo</h5>
+                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="Faça seu cadastro!"/>
 
-    <p:panel>
+                            <p:button value="Criar conta" outcome="telaCadastro.xhtml"/>
 
-        <h:panelGrid>
+                            <p:graphicImage library="imglogin" name="logoCompleta.png" style=" width: 90%; display: block;"/>
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
 
-                <h:form>
-                    <p:messages id="msgs"/>
+                <h5>Login</h5>
+                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid id="painelLogin" columns="2">
+                            <p:outputLabel value="Seu e-mail: "/>
+                            <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true" requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-                    <h:panelGrid columns="3" cellpadding="7" styleClass="mb-3">
-                        <p:outputLabel for="Login" value="Login:"/>
-                        <p:inputText id="Login" value="#{LoginController.login.login}" required="true"
-                                     label="Login">
-                            <f:validateLength minimum="2"/>
-                        </p:inputText>
-                        <p:message for="Login" display="icon"/>
+                            <p:outputLabel value="Sua senha: "/>
+                            <p:inputText size="20" maxlength="20" value="#{loginController.loginSenha}" requiredMessage="O campo 'Senha' é obrigatório" converterMessage="O campo 'Senha' só aceita números inteiros"/>
 
-                        <p:outputLabel for="Senha" value="Senha:"/>
-                        <p:inputText id="Senha" value="#{LoginController.login.senha}" label="Senha"
-                                     required="true">
-                            <f:validateLength minimum="2"/>
-                            <p:ajax update="msgSenha" event="keyup"/>
-                        </p:inputText>
-                        <p:message for="Senha" id="msgSenha" display="icon"/>
-
-                    </h:panelGrid>
-
-
-                </h:form>
-
-        </h:panelGrid>
-
-    </p:panel>
-
-</h:form>
-
-
-</body>
+                            <p:button value="Entrar" update="mensagem painelLogin"/>
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
 
 </html>
