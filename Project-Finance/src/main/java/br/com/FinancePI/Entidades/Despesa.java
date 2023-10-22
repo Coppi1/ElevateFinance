@@ -7,6 +7,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -31,14 +32,15 @@ public class Despesa implements Serializable {
 
     private Double valor;
 
-   // private LocalDate dtLancamento;
+    private LocalDate dtLancamento;
 
     private String fornecedor;
 
+    @ManyToOne
+    private CategoriaDespesa categoriaDespesa;
+
+
    // @ManyToOne
    // private Fornecedor fornecedor;
-
-  //  @ManyToOne
-  //  private CategoriaDespesa categoriaDespesa;
 
 }

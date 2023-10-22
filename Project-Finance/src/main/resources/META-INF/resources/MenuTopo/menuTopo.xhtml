@@ -16,17 +16,32 @@
 
 <body>
     <h:form>
-
         <div class="menu-bar">
         <p:menubar style="background-color: lightcyan" styleClass="menu-bar">
             <p:menuitem>
-                <p:graphicImage library="IMG" name="logo.png" alt="Logo" style="width: 180px; height: 65px;"/>
+
+                <p:graphicImage library="IMG" name="logo.png" alt="Logo" style="width: 180px; height: 65px;" />
+
             </p:menuitem>
+            <p:submenu label="Lançamentos">
+                <p:menuitem value="Lançamento de Despesas" outcome="telaLancamentoDespesa.xhtml"/>
+                <p:menuitem value="Lançamento de Receitas" outcome="telaLancamentoReceita.xhtml"/>
+                <p:menuitem value="Transferência entre contas"/>
+            </p:submenu>
+            <p:menuitem value="Baixas"/>
+            <p:submenu label="Cadastros">
+                <p:menuitem value="Cadastro de Colaboradores"/>
+                <p:menuitem value="Cadastro de Natureza"/>
+            </p:submenu>
+            <p:submenu label="Conferência/Relatórios">
+                <p:menuitem value="Conciliação Bancária"/>
+                <p:menuitem value="Relatórios"/>
+            </p:submenu>
+
+            <p:menuitem icon="pi pi-power-off" action="/login.xhtml" />
+
         </p:menubar>
         </div>
-
-        <div class="spacer"></div>
-
     </h:form>
 
 </body>

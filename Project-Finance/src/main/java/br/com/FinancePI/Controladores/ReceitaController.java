@@ -1,10 +1,7 @@
-package br.com.FinancePI.controladores;
+package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.despesaDAO;
-import br.com.FinancePI.DAO.receitaDAO;
-import br.com.FinancePI.Entidades.Despesa;
+import br.com.FinancePI.DAO.ReceitaDAO;
 import br.com.FinancePI.Entidades.Receita;
-import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
@@ -14,20 +11,19 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
 @Component
 @Data
 @ViewScoped
-public class receitaController implements Serializable {
+public class ReceitaController implements Serializable {
 
 
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    receitaDAO recDAO = new receitaDAO();
+    ReceitaDAO recDAO = new ReceitaDAO();
 
     @Inject
     private Receita receita;
@@ -96,16 +92,16 @@ public class receitaController implements Serializable {
 
     }
 
-    public void buscarListaReceita() {
-        if (dataInicio != null && dataFim != null) {
-            listaReceita = recDAO.buscarListaReceita(dataInicio, dataFim);
-            if (listaReceita.isEmpty()) {
-                Messages.addFlashGlobalError("Nenhuma despesa encontrada no intervalo de datas especificado");
-            }
-        } else {
-            Messages.addFlashGlobalError("Intervalo de datas não especificado");
-        }
-    }
+    //public void buscarListaReceita() {
+   //     if (dataInicio != null && dataFim != null) {
+    //        listaReceita = recDAO.buscarListaReceita(dataInicio, dataFim);
+   //         if (listaReceita.isEmpty()) {
+   //             Messages.addFlashGlobalError("Nenhuma despesa encontrada no intervalo de datas especificado");
+   //         }
+   //     } else {
+     //       Messages.addFlashGlobalError("Intervalo de datas não especificado");
+    //    }
+   // }
 
     public void calcularSoma() {
         soma = listaReceita.stream().mapToDouble(Receita::getValorBruto).sum();
