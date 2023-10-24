@@ -26,15 +26,12 @@
 
 <h:body>
 
+    <div class="Splitter">
+        <p:splitter id="splitterGeral" style="height: 300px" styleClass="mb-5">
 
-    <h:form id="formulario">
-
-        <div class="Splitter">
-            <p:splitter id="splitterGeral" style="height: 300px" styleClass="mb-5">
-                <p:splitterPanel id="splitterCampos" styleClass="flex align-items-center justify-content-center">
-
+            <p:splitterPanel id="splitterCampos" styleClass="flex align-items-center justify-content-center">
+                <h:form id="formulario">
                     <p:panel header="Lançamento de Despesas">
-
                         <p:messages id="msg_confirmacao" closable="true"/>
                         <h:panelGrid id="campos" columns="2">
 
@@ -91,9 +88,18 @@
 
                         </h:panelGrid>
 
+
                     </p:panel>
-                </p:splitterPanel>
-                <p:splitterPanel id="splitterMovimentacao" styleClass="flex align-items-center justify-content-center">
+                </h:form>
+            </p:splitterPanel>
+
+            <p:splitterPanel id="splitterMovimentacao" styleClass="flex align-items-center justify-content-center">
+                <h:form id="formPesquisa">
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="450">
+                        <p:commandButton value="Cancelar" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                        <p:commandButton value="Confirmar" type="button" styleClass="ui-confirmdialog-yes"/>
+                    </p:confirmDialog>
+
                     <p:panel id="panelVisualizacao" header="Movimentação - Despesas">
                         <h:panelGrid columns="2">
 
@@ -114,7 +120,7 @@
                         </h:panelGrid>
 
                         <h:panelGrid>
-                            <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="Despesa" rows="20"
+                            <p:dataTable id="tabela" value="#{despesaController.listaDespesas}" var="Despesa" rows="15"
                                          paginator="true" style="background: blue" rowExpandMode="true"
                                          styleClass="mt-2"
                                          editable="true"
@@ -143,11 +149,15 @@
                                 <p:column>
                                     <p:commandButton icon="pi pi-search" styleClass="rounded-button ui-button-success"
                                                      actionListener="#{despesaController.verDespesa(Despesa)}"
-                                                     update=":formulario:editDespesa"/>
+                                                     update=":formDialogo:editDespesa"/>
 
                                     <p:commandButton icon="pi pi-times" styleClass="rounded-button ui-button-danger"
                                                      actionListener="#{despesaController.excluirDespesa(Despesa)}"
-                                                     update="tabela"/>
+                                                     update="tabela">
+                                        <p:confirm header="Confirmation"
+                                                   message="Você confirma a exclusão do registro nº #{Despesa.id}"
+                                                   icon="pi pi-info-circle"/>
+                                    </p:commandButton>
                                 </p:column>
                                 <f:facet name="footer">
                                     <span class="font-bold">Valor total das Despesas: R$#{despesaController.soma}.</span>
@@ -157,62 +167,67 @@
                         </h:panelGrid>
                     </p:panel>
 
-                    <p:dialog width="950" header="Visualizar / Editar Despesa" widgetVar="editDespesaDialog"
-                              closable="true">
-                        <p:panel>
-                            <p:messages id="msg_edit" closable="true"/>
-                            <p:panelGrid id="editDespesa" columns="2">
-                                <p:outputLabel value="Número único:"/>
-                                <p:inputText size="2" maxlength="5" readonly="true"
-                                             value="#{despesaController.despesaEdicao.id}"/>
+                </h:form>
+            </p:splitterPanel>
+        </p:splitter>
+    </div>
 
-                                <p:outputLabel value="Fornecedor/Origem:"/>
-                                <p:inputText size="40" maxlength="100"
-                                             value="#{despesaController.despesaEdicao.fornecedor}"
-                                             requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
-                                <p:outputLabel value="Descrição da Despesa:"/>
-                                <p:inputTextarea maxlength="500" rows="6" cols="53"
-                                                 value="#{despesaController.despesaEdicao.descricao}"
-                                                 requiredMessage="O campo Descrição é obrigadorio!"/>
+    <p:dialog width="950" header="Visualizar / Editar Despesa" widgetVar="editDespesaDialog"
+              closable="true" id="editDespesaDialog">
+        <h:form id="formDialogo">
+            <p:panel>
+                <p:messages id="msg_edit" closable="true"/>
+                <p:panelGrid id="editDespesa" columns="2">
+                    <p:outputLabel value="Número único:"/>
+                    <p:inputText size="2" maxlength="5" readonly="true"
+                                 value="#{despesaController.despesaEdicao.id}"/>
 
-                                <p:outputLabel value="Natureza:"/>
-                                <p:selectOneMenu value="#{despesaController.despesaEdicao.categoriaDespesa}"
-                                                 converter="omnifaces.SelectItemsConverter">
-                                    <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
-                                    <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria"
-                                                   itemLabel="#{categoria.descricao}"/>
-                                </p:selectOneMenu>
+                    <p:outputLabel value="Fornecedor/Origem:"/>
+                    <p:inputText size="40" maxlength="100"
+                                 value="#{despesaController.despesaEdicao.fornecedor}"
+                                 requiredMessage="O campo Fornecedor é obrigadorio!"/>
 
-                                <p:outputLabel value="Data de Vencimento:"/>
-                                <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
-                                            pattern="dd/MM/yyyy" value="#{despesaController.despesaEdicao.dtVencimento}"
-                                            requiredMessage="O campo data de vencimento é obrigadorio!"/>
+                    <p:outputLabel value="Descrição da Despesa:"/>
+                    <p:inputTextarea maxlength="500" rows="6" cols="53"
+                                     value="#{despesaController.despesaEdicao.descricao}"
+                                     requiredMessage="O campo Descrição é obrigadorio!"/>
 
-                                <p:outputLabel value="Valor:"/>
-                                <p:inputText value="#{despesaController.despesaEdicao.valor}"
-                                             requiredMessage="O campo Valor é obrigadorio!"
-                                             converterMessage="Informe um valor válido! (apenas números)">
-                                    <f:convertNumber type="currency" pattern="0.00"/>
-                                </p:inputText>
+                    <p:outputLabel value="Natureza:"/>
+                    <p:selectOneMenu value="#{despesaController.despesaEdicao.categoriaDespesa}"
+                                     converter="omnifaces.SelectItemsConverter">
+                        <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
+                        <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria"
+                                       itemLabel="#{categoria.descricao}"/>
+                    </p:selectOneMenu>
 
-                                <p:outputLabel value="Forma de Pagamento:"/>
-                                <p:inputText size="40" maxlength="100"
-                                             value="#{despesaController.despesaEdicao.formaPGTO}"
-                                             requiredMessage="O campo nome é obrigadorio!"/>
-                            </p:panelGrid>
-                            <p:panelGrid columns="2">
-                                <p:commandButton value="Salvar"
-                                                 actionListener="#{despesaController.alterarDespesa()}"
-                                                 update="msg_edit tabela"/>
-                            </p:panelGrid>
-                        </p:panel>
-                    </p:dialog>
-                </p:splitterPanel>
-            </p:splitter>
-        </div>
+                    <p:outputLabel value="Data de Vencimento:"/>
+                    <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                pattern="dd/MM/yyyy" value="#{despesaController.despesaEdicao.dtVencimento}"
+                                requiredMessage="O campo data de vencimento é obrigadorio!"/>
 
-    </h:form>
+                    <p:outputLabel value="Valor:"/>
+                    <p:inputText value="#{despesaController.despesaEdicao.valor}"
+                                 requiredMessage="O campo Valor é obrigadorio!"
+                                 converterMessage="Informe um valor válido! (apenas números)">
+                        <f:convertNumber type="currency" pattern="0.00"/>
+                    </p:inputText>
+
+                    <p:outputLabel value="Forma de Pagamento:"/>
+                    <p:inputText size="40" maxlength="100"
+                                 value="#{despesaController.despesaEdicao.formaPGTO}"
+                                 requiredMessage="O campo nome é obrigadorio!"/>
+                </p:panelGrid>
+                <p:panelGrid columns="2">
+                    <p:commandButton value="Salvar"
+                                     actionListener="#{despesaController.alterarDespesa()}"
+                                     update="msg_edit :formPesquisa:tabela" />
+                    <p:commandButton value="Cancelar" oncomplete="PF('editDespesaDialog').hide();"/>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </p:dialog>
+
 
 </h:body>
 </html>
