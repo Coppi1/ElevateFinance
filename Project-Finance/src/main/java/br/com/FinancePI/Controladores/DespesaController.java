@@ -100,6 +100,9 @@ public class DespesaController implements Serializable {
         valorBoolean = "true";
 
         despDAO.alterar(despesaEdicao);
+
+        buscarListaDespesa();
+
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");
 
         despesaEdicao = new Despesa();
