@@ -54,6 +54,8 @@ public class DespesaController implements Serializable {
     public void init() {
         listaCategoriaDespesas = categDAO.listarCategorias();
 
+        dataInicio = LocalDate.now();
+        dataFim = LocalDate.now();
     }
 
 
@@ -139,10 +141,6 @@ public class DespesaController implements Serializable {
 
     }
 
-   // public void cancelar() {
-        // Fechar a caixa de diálogo sem salvar as alterações
-  //      PrimeFaces.current().executeScript("PF('editDespesaDialog').hide();");
-   // }
 
 
 
