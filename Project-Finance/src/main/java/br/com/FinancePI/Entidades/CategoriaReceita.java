@@ -1,3 +1,4 @@
+
 package br.com.FinancePI.Entidades;
 
 import jakarta.persistence.*;

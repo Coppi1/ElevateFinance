@@ -13,7 +13,9 @@
     <title>Cadastre-se</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
-    <h:outputStylesheet name="/styles.css"/>
+
+
+
 </h:head>
 
 <h:body>
@@ -28,13 +30,12 @@
                         <h:panelGrid columns="1">
 
 
-                            <p:graphicImage library="IMG" name="logoCompleta.png" style=" width: 90%; display: block;"/>
                         </h:panelGrid>
                     </p:splitterPanel>
                 </p:splitter>
 
                 <h5>Insira seus Dados Abaixo</h5>
-                <p:splitter style="height: 260px; width: 550px" styleClass="mb-5">
+                <p:splitter style="height: 390px; width: 550px" styleClass="mb-5">
                     <p:splitterPanel styleClass="flex align-items-center justify-content-center">
                         <h:panelGrid id="painelCadastro" columns="2">
                             <p:outputLabel value="Nome Completo: "/>
@@ -61,9 +62,53 @@
                                          converterMessage="O campo 'Telefone ou Celular' só aceita números inteiros"/>
 
 
+
+                            <p:outputLabel for="estadoDropdown" value="Estado:"/>
+                            <p:selectOneMenu id="estadoDropdown" value="#{yourBean.selectedState}">
+                                <f:selectItem itemLabel="Selecione " itemDisabled="true"/>
+                                <f:selectItem itemValue="AC" itemLabel="Acre-AC"/>
+                                <f:selectItem itemValue="AL" itemLabel="Alagoas-AL"/>
+                                <f:selectItem itemValue="AP" itemLabel="Amapá-AP"/>
+                                <f:selectItem itemValue="AM" itemLabel="Amazonas-AM"/>
+                                <f:selectItem itemValue="BA" itemLabel="Bahia-BA"/>
+                                <f:selectItem itemValue="CE" itemLabel="Ceará-CE"/>
+                                <f:selectItem itemValue="DF" itemLabel="Distrito Federal-DF"/>
+                                <f:selectItem itemValue="ES" itemLabel="Espirito Santo-ES"/>
+                                <f:selectItem itemValue="GO" itemLabel="Goias-GO"/>
+                                <f:selectItem itemValue="MA" itemLabel="Maranhão-MA"/>
+                                <f:selectItem itemValue="MT" itemLabel="Mato Grosso-MT"/>
+                                <f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul-MS"/>
+                                <f:selectItem itemValue="MG" itemLabel="Minas Gerais-MG"/>
+                                <f:selectItem itemValue="PA" itemLabel="Pará-PA"/>
+                                <f:selectItem itemValue="PB" itemLabel="Paraíba-PB"/>
+                                <f:selectItem itemValue="PR" itemLabel="Paraná-PR"/>
+                                <f:selectItem itemValue="PE" itemLabel="Pernanbuco-PE"/>
+                                <f:selectItem itemValue="PI" itemLabel="Piauí-PI"/>
+                                <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro-RJ"/>
+                                <f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte-RN"/>
+                                <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul-RS"/>
+                                <f:selectItem itemValue="RO" itemLabel="Rondônia-RO"/>
+                                <f:selectItem itemValue="RR" itemLabel="Roraima-RR"/>
+                                <f:selectItem itemValue="SC" itemLabel="Santa Catarina-SC"/>
+                                <f:selectItem itemValue="SP" itemLabel="São Paulo-SP"/>
+                                <f:selectItem itemValue="SE" itemLabel="Sergipe-SE"/>
+                                <f:selectItem itemValue="TO" itemLabel="Tocantins-TO"/>
+
+
+                            </p:selectOneMenu>
+
+
+
+                            <p:outputLabel value="Cidade: "/>
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.cidade}"
+                                         requiredMessage="O campo 'Cidade' é obrigatório"/>
+
+
                             <p:button value="Cadastrar" outcome="telaLogin.xhtml" update="mensagem painelCadastro"/>
 
                             <p:button value="Voltar" outcome="telaLogin.xhtml"/>
+
+
 
 
                         </h:panelGrid>

@@ -23,5 +23,4 @@ public class LoginController implements Serializable {
         Messages.addFlashGlobalInfo("Login efetuado com sucesso!");
     }
 
-
 }
