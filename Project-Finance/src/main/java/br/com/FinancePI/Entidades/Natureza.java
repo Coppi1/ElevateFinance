@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Component
 @Data
-public class CategoriaDespesa implements Serializable {
+public class Natureza implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -20,9 +20,8 @@ public class CategoriaDespesa implements Serializable {
 
     private String descricao;
 
-    @OneToMany (mappedBy = "categoriaDespesa")
+    @OneToMany (mappedBy = "natureza")
     private List<Despesa> listaDespesas;
-
 
     @Override
     public String toString() {

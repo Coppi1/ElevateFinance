@@ -17,7 +17,7 @@
 
 
 <h:head>
-    <title>Projeto</title>
+    <title>Lançamento - Despesa</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputStylesheet name="/styles.css"/>
@@ -52,10 +52,10 @@
                                              requiredMessage="O campo Descrição é obrigadorio!"/>
 
                             <p:outputLabel value="Natureza:"/>
-                            <p:selectOneMenu value="#{despesaController.categoriaDespesa}"
+                            <p:selectOneMenu value="#{despesaController.natureza}"
                                              converter="omnifaces.SelectItemsConverter">
                                 <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
-                                <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria"
+                                <f:selectItems value="#{despesaController.listaNaturezas}" var="categoria"
                                                itemLabel="#{categoria.descricao}"/>
                             </p:selectOneMenu>
 
@@ -145,7 +145,7 @@
                                     #{Despesa.formaPGTO}
                                 </p:column>
                                 <p:column headerText="Natureza">
-                                    #{Despesa.categoriaDespesa.descricao}
+                                    #{Despesa.natureza.descricao}
                                 </p:column>
                                 <p:column>
                                     <p:commandButton icon="pi pi-search" styleClass="rounded-button ui-button-success"
@@ -195,10 +195,10 @@
                                      requiredMessage="O campo Descrição é obrigadorio!"/>
 
                     <p:outputLabel value="Natureza:"/>
-                    <p:selectOneMenu value="#{despesaController.despesaEdicao.categoriaDespesa}"
+                    <p:selectOneMenu value="#{despesaController.despesaEdicao.natureza}"
                                      converter="omnifaces.SelectItemsConverter">
                         <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
-                        <f:selectItems value="#{despesaController.listaCategoriaDespesas}" var="categoria"
+                        <f:selectItems value="#{despesaController.listaNaturezas}" var="categoria"
                                        itemLabel="#{categoria.descricao}"/>
                     </p:selectOneMenu>
 

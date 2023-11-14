@@ -30,7 +30,7 @@ public class Receita implements Serializable {
     private String FormaPGTO;
 
     @ManyToOne
-    private CategoriaReceita categoriaReceita;
+    private Natureza natureza;
 
 
 }

@@ -1,11 +1,8 @@
 package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.CategoriaDespesaDAO;
-import br.com.FinancePI.DAO.CategoriaReceitaDAO;
+import br.com.FinancePI.DAO.NaturezaDAO;
 import br.com.FinancePI.DAO.ReceitaDAO;
-import br.com.FinancePI.Entidades.CategoriaDespesa;
-import br.com.FinancePI.Entidades.CategoriaReceita;
-import br.com.FinancePI.Entidades.Despesa;
+import br.com.FinancePI.Entidades.Natureza;
 import br.com.FinancePI.Entidades.Receita;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -34,7 +31,7 @@ public class ReceitaController implements Serializable {
     ReceitaDAO recDAO = new ReceitaDAO();
 
     @Autowired
-    CategoriaReceitaDAO categDAO = new CategoriaReceitaDAO();
+    NaturezaDAO natDAO = new NaturezaDAO();
 
 
     @Inject
@@ -47,15 +44,15 @@ public class ReceitaController implements Serializable {
 
     private List<Receita> listaReceitas;
 
-    private List<CategoriaReceita> listaCategoriaReceitas;
+    private List<Natureza> listaCategoriaReceitas;
 
-    private CategoriaReceita categoriaReceita;
+    private Natureza categoriaReceita;
 
 
 
     @PostConstruct
     public void init() {
-        listaCategoriaReceitas = categDAO.listarCategorias();
+        listaCategoriaReceitas = natDAO.listarCategorias();
     }
 
     public void salvar() {

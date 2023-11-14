@@ -1,15 +1,11 @@
 package br.com.FinancePI.Entidades;
 
-import jakarta.annotation.ManagedBean;
-import jakarta.faces.view.ViewScoped;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 
 @Entity
@@ -37,7 +33,7 @@ public class Despesa implements Serializable {
     private String fornecedor;
 
     @ManyToOne
-    private CategoriaDespesa categoriaDespesa;
+    private Natureza natureza;
 
 
    // @ManyToOne

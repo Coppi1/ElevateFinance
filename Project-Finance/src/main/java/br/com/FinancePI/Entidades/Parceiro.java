@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Entity
 @Component
 @Data
-public class Colaborador  implements Serializable {
+public class Parceiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
