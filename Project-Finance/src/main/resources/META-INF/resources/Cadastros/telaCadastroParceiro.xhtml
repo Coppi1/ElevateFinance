@@ -26,50 +26,76 @@
 
 <h:body>
 
-    <h:form>
-        <p:panel header="Cadastro de Parceiros" id="panelCampos">
-            <p:messages id="mensagem" closable="true"/>
-            <p:panelGrid id="campos" columns="2">
-                <p:outputLabel value="Número único:"/>
-                <p:inputText size="2" maxlength="5" readonly="true"
-                             value="#{parceiroController.parceiro.id}"/>
+    <div class="SplitterParc">
+        <p:splitter id="splitterCadastro" style="height: 300px" styleClass="mb-5">
 
-                <p:outputLabel value="Razão Social:"/>
-                <p:inputText size="40" maxlength="100"
-                             value="#{parceiroController.parceiro.nome}"
-                             required="true"
-                             requiredMessage="O campo Razão Social é obrigadorio!"/>
+            <p:splitterPanel id="splitterCampos" styleClass="flex align-items-center justify-content-center">
+                <h:form>
+                    <p:panel header="Cadastro de Parceiros" id="panelCampos">
+                        <p:messages id="mensagem" closable="true"/>
+                        <h:panelGrid id="campos" columns="2">
+                            <p:outputLabel value="Número único:"/>
+                            <p:inputText size="2" maxlength="5" readonly="true"
+                                         value="#{parceiroController.parceiro.id}"/>
 
-                <p:outputLabel value="Nome Fantasia:"/>
-                <p:inputText size="40" maxlength="100"
-                             value="#{parceiroController.parceiro.nomeFantasia}"
-                             required="true"
-                             requiredMessage="O campo Nome Fantasia é obrigadorio!"/>
+                            <p:outputLabel value="Razão Social:"/>
+                            <p:inputText size="40" maxlength="100"
+                                         value="#{parceiroController.parceiro.nome}"
+                                         required="true"
+                                         requiredMessage="O campo Razão Social é obrigadorio!"/>
 
-                <p:outputLabel value="CNPJ:"/>
-                <p:inputText size="40" maxlength="100"
-                             value="#{parceiroController.parceiro.cnpj}"
-                             required="false"/>
+                            <p:outputLabel value="Nome Fantasia:"/>
+                            <p:inputText size="40" maxlength="100"
+                                         value="#{parceiroController.parceiro.nomeFantasia}"
+                                         required="true"
+                                         requiredMessage="O campo Nome Fantasia é obrigadorio!"/>
 
-                <p:outputLabel value="CPF:"/>
-                <p:inputText size="40" maxlength="100"
-                             value="#{parceiroController.parceiro.cpf}"
-                             required="false"/>
+                            <p:outputLabel value="CNPJ:"/>
+                            <p:inputMask size="40" maxlength="18" mask="99.999.999/9999-99"
+                                         value="#{parceiroController.parceiro.cnpj}"
+                                         required="false">
+                                <p:keyFilter regEx="/[0-9]/i"/>
+                            </p:inputMask>
 
-                <p:outputLabel value="Fornecedor:"/>
-                <p:toggleSwitch value="#{parceiroController.parceiro.fornecedor}"/>
 
-                <p:outputLabel value="Cliente:"/>
-                <p:toggleSwitch value="#{parceiroController.parceiro.cliente}"/>
+                            <p:outputLabel value="CPF:"/>
+                            <p:inputMask id="meuInput" size="40" maxlength="14" mask="999.999.999-99"
+                                         value="#{parceiroController.parceiro.cpf}"
+                                         required="false">
+                                <p:keyFilter regEx="/[0-9]/i"/>
+                            </p:inputMask>
 
-                <p:commandButton value="Salvar"
-                                 actionListener="#{parceiroController.salvar()}"
-                                 update="mensagem campos"/>
 
-            </p:panelGrid>
+                            <p:outputLabel value="Fornecedor:"/>
+                            <p:toggleSwitch value="#{parceiroController.parceiro.fornecedor}"/>
 
-        </p:panel>
-    </h:form>
+                            <p:outputLabel value="Cliente:"/>
+                            <p:toggleSwitch value="#{parceiroController.parceiro.cliente}"/>
 
+
+
+                        </h:panelGrid>
+                        <h:panelGrid>
+                            <p:commandButton value="Salvar"
+                                             actionListener="#{parceiroController.salvar()}"
+                                             update="mensagem campos"/>
+                        </h:panelGrid>
+
+                    </p:panel>
+                </h:form>
+            </p:splitterPanel>
+
+            <p:splitterPanel id="splitterVisualizacao" styleClass="flex align-items-center justify-content-center">
+                <h:form id="formVisualizacao">
+                    <p:panel header="Visualização - Parceiros">
+                        <p:messages id="msg_visualizacao" closable="true"/>
+                        <h:panelGrid columns="2">
+
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:splitterPanel>
+        </p:splitter>
+    </div>
 </h:body>
 </html>

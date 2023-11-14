@@ -25,6 +25,8 @@ public class ParceiroController implements Serializable {
     @Inject
     private Parceiro parceiro;
 
+    private Parceiro parceiroBusca;
+
 
     public void salvar(){
 
