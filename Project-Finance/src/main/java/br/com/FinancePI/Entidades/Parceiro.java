@@ -7,18 +7,31 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 @Entity
 @Component
 @Data
-public class Fornecedor {
+public class Parceiro implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer cod;
+    private Integer id;
 
     private String nome;
+
+    private String nomeFantasia;
+
+    private String cnpj;
+
+    private String cpf;
+
+    private boolean fornecedor;
+
+    private boolean cliente;
+
 
 
 }

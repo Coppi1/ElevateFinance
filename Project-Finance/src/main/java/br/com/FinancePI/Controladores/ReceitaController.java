@@ -1,33 +1,38 @@
-package br.com.FinancePI.controladores;
+package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.despesaDAO;
-import br.com.FinancePI.DAO.receitaDAO;
-import br.com.FinancePI.Entidades.Despesa;
+import br.com.FinancePI.DAO.NaturezaDAO;
+import br.com.FinancePI.DAO.ReceitaDAO;
+import br.com.FinancePI.Entidades.Natureza;
 import br.com.FinancePI.Entidades.Receita;
-import jakarta.annotation.ManagedBean;
+import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.omnifaces.util.Messages;
+import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-
+@EqualsAndHashCode
 @Component
 @Data
 @ViewScoped
-public class receitaController implements Serializable {
+public class ReceitaController implements Serializable {
 
 
     public static final long serialVersionUID = 1L;
 
     @Autowired
-    receitaDAO recDAO = new receitaDAO();
+    ReceitaDAO recDAO = new ReceitaDAO();
+
+    @Autowired
+    NaturezaDAO natDAO = new NaturezaDAO();
+
 
     @Inject
     private Receita receita;
@@ -37,10 +42,20 @@ public class receitaController implements Serializable {
     private LocalDate dataFim;
     private double soma;
 
-    private List<Receita> listaReceita;
+    private List<Receita> listaReceitas;
+
+    private List<Natureza> listaCategoriaReceitas;
+
+    private Natureza categoriaReceita;
 
 
-    public void salvar(){
+
+    @PostConstruct
+    public void init() {
+        listaCategoriaReceitas = natDAO.listarCategorias();
+    }
+
+    public void salvar() {
 
         valorBoolean = "true";
 
@@ -63,11 +78,12 @@ public class receitaController implements Serializable {
                 Messages.addFlashGlobalError("Registro não encontrado");
             }
         } else {
-            Messages.addFlashGlobalError("Número único da despesa não especificado");
+            Messages.addFlashGlobalError("Código de Lançamento da receita não encontrado");
         }
 
     }
 
+    /*
     public void buscarReceita() {
 
         valorBoolean = "false";
@@ -84,7 +100,7 @@ public class receitaController implements Serializable {
         }
 
     }
-
+*/
 
 
     public void alterarReceita() {
@@ -94,28 +110,49 @@ public class receitaController implements Serializable {
         recDAO.alterar(receita);
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");
 
+        receitaEdicao = new Receita();
+
+        buscarListaReceita();
     }
 
     public void buscarListaReceita() {
         if (dataInicio != null && dataFim != null) {
-            listaReceita = recDAO.buscarListaReceita(dataInicio, dataFim);
-            if (listaReceita.isEmpty()) {
+            listaReceitas = recDAO.buscarListaReceita(dataInicio, dataFim);
+            if (listaReceitas.isEmpty()) {
                 Messages.addFlashGlobalError("Nenhuma despesa encontrada no intervalo de datas especificado");
             }
         } else {
             Messages.addFlashGlobalError("Intervalo de datas não especificado");
         }
+        calcularSoma();
     }
 
     public void calcularSoma() {
-        soma = listaReceita.stream().mapToDouble(Receita::getValorBruto).sum();
+        soma = listaReceitas.stream().mapToDouble(Receita::getValor).sum();
+    }
+
+    private Receita receitaEdicao = new Receita();
+
+    public void viewProducts(Receita receitaSelecionada) {
+
+        receitaEdicao = receitaSelecionada;
+
+        // Abre a caixa de diálogo para editar a receita
+
+        PrimeFaces.current().executeScript("PF('editReceitaDialog').show();");
+
+
+    }
+
+    public void cancelar() {
+        // Fechar a caixa de diálogo sem salvar as alterações
+
+        PrimeFaces.current().executeScript("PF('editReceitaDialog').hide();");
     }
 
 
-
-
-
 }
+
 
 
 

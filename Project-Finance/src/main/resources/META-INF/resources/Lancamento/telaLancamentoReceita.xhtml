@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+        >
+
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jc="http://java.sun.com/jsf/core">
+
+
+<h:head>
+    <title>Lancamento Receita</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="/styles.css"/>
+    <ui:include src="../MenuTopo/menuTopo.xhtml"/>
+</h:head>
+
+<h:body>
+
+
+    <h:form id="formulario">
+
+        <div class="Splitter">
+            <p:splitter id="splitterGeral" style="height: 300px" styleClass="mb-5">
+                <p:splitterPanel id="splitterCampos" styleClass="flex align-items-center justify-content-center">
+
+                    <p:panel header="Lançamento de Receita">
+
+                        <p:messages id="msg_confirmacao" closable="true"/>
+                        <h:panelGrid id="campos" columns="2" rendered="true">
+
+                            <p:outputLabel value="Código de Lançamento:"/>
+                            <p:inputText size="2" maxlength="5" readonly="true"
+                                         value="#{receitaController.receita.id}"/>
+
+                            <p:outputLabel value="Descrição da Receita:"/>
+                            <p:inputText id="txReceita" size="40" maxlength="100"
+                                         value="#{receitaController.receita.descricao}"
+                                         required="#{receitaController.valorBoolean}"
+                                         requiredMessage="O campo Receita é obrigadorio!"/>
+
+
+                            <p:outputLabel value="Natureza:"/>
+                            <p:selectOneMenu value="#{receitaController.categoriaReceita}"
+                                             converter="omnifaces.SelectItemsConverter">
+                                <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
+                                <f:selectItems value="#{receitaController.listaCategoriaReceitas}" var="categoria"
+                                               itemLabel="#{categoria.descricao}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Data de Lançamento:"/>
+                            <p:calendar id="txCalendar" navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{receitaController.receita.dataLancamento}"
+                                        required="#{receitaController.valorBoolean}"
+                                        requiredMessage="O campo data de lançamento é obrigadorio!"/>
+
+                            <p:outputLabel value="Valor:"/>
+                            <p:inputText id="txValor" value="#{receitaController.receita.valor}"
+                                         required="#{receitaController.valorBoolean}"
+                                         requiredMessage="O campo Valor é obrigadorio!"
+                                         converterMessage="Informe um valor válido! (apenas números)">
+                                <f:convertNumber type="currency" pattern="0.00"/>
+                            </p:inputText>
+
+                            <p:outputLabel value="Forma de Pagamento:"/>
+                            <p:inputText id="txFormaPgto" size="40" maxlength="100"
+                                         value="#{receitaController.receita.formaPGTO}"
+                                         required="#{receitaController.valorBoolean}"
+                                         requiredMessage="O campo nome é obrigadorio!"/>
+
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="3">
+                            <p:commandButton value="Salvar"
+                                             actionListener="#{receitaController.salvar()}"
+                                             update="msg_confirmacao campos"/>
+
+                            <p:commandButton value="Excluir"
+                                             actionListener="#{receitaController.excluir()}"
+                                             update="msg_confirmacao campos"/>
+
+                            <p:commandButton value="Alterar"
+                                             actionListener="#{receitaController.alterarReceita()}"
+                                             update="msg_confirmacao campos"/>
+                        </h:panelGrid>
+
+                    </p:panel>
+                </p:splitterPanel>
+
+                <p:splitterPanel id="splitterMovimentacao" styleClass="flex align-items-center justify-content-center">
+                    <p:panel header="Consulta - Receitas">
+                        <h:panelGrid columns="2">
+
+                            <p:outputLabel value="De:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{receitaController.dataInicio}"
+                                        required="false" requiredMessage="O campo data de lançamento é obrigatório!"/>
+
+                            <p:outputLabel value="Até:"/>
+
+                            <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{receitaController.dataFim}"
+                                        required="false" requiredMessage="O campo data de lançamento é obrigatório!"/>
+
+                            <p:commandButton value="Buscar"
+                                             actionListener="#{receitaController.buscarListaReceita()}"
+                                             update="tabela"/>
+                        </h:panelGrid>
+
+                        <h:panelGrid>
+                            <p:dataTable id="tabela" value="#{receitaController.listaReceitas}" var="Receita" rows="20"
+                                         paginator="true" style="background: blue" rowExpandMode="true"
+                                         styleClass="mt-2"
+                                         editable="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                                <p:column headerText="Código de Lançamento">
+                                    #{Receita.id}
+                                </p:column>
+                                <p:column headerText="Descrição da Receita">
+                                    #{Receita.descricao}
+                                </p:column>
+                                <p:column headerText="Natureza">
+                                    #{Receita.categoriaReceita}
+                                </p:column>
+                                <p:column headerText="Data de Lançamento">
+                                    #{Receita.dataLancamento}
+                                </p:column>
+                                <p:column headerText="Valor">
+                                    #{Receita.valor}
+                                </p:column>
+                                <p:column headerText="Forma de Pagamento">
+                                    #{Receita.formaPGTO}
+                                </p:column>
+
+                                <p:column>
+                                    <p:commandButton icon="pi-file-edit"
+                                                     actionListener="#{receitaController.viewProducts(Receita)}"
+                                                     styleClass="mr-2 ui-button-outlined"
+                                                     update=":formulario:editReceita"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <span class="font-bold">Valor total das Receita: R$#{receitaController.soma}.</span>
+                                </f:facet>
+
+                            </p:dataTable>
+                        </h:panelGrid>
+                    </p:panel>
+
+                    <p:dialog width="750" header="Editar Receita" widgetVar="editReceitaDialog" closable="false">
+                        <p:messages id="msg_edit" closable="true"/>
+                        <p:panelGrid id="editReceita" columns="2">
+                            <p:outputLabel value="Código de Lançamento:"/>
+                            <p:inputText size="2" maxlength="5" readonly="true"
+                                         value="#{receitaController.receitaEdicao.id}"/>
+
+                            <p:outputLabel value="Descrição da Receita:"/>
+                            <p:inputText size="40" maxlength="100"
+                                         value="#{receitaController.receitaEdicao.descricao}"
+                                         requiredMessage="O campo Descrição é obrigadorio!"/>
+
+                            <p:outputLabel value="Natureza:"/>
+                            <p:selectOneMenu value="#{receitaController.receitaEdicao.categoriaReceita}"
+                                             converter="omnifaces.SelectItemsConverter">
+                                <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
+                                <f:selectItems value="#{receitaController.listaCategoriaReceitas}" var="categoria"
+                                               itemLabel="#{categoria.descricao}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="Data de Lançamento:"/>
+                            <p:calendar navigator="true" yearRange="c-100:c+100" readonlyInput="true"
+                                        pattern="dd/MM/yyyy" value="#{receitaController.receitaEdicao.dataLancamento}"
+                                        requiredMessage="O campo data de vencimento é obrigadorio!"/>
+
+                            <p:outputLabel value="Valor:"/>
+                            <p:inputText value="#{receitaController.receitaEdicao.valor}"
+                                         requiredMessage="O campo Valor é obrigadorio!"
+                                         converterMessage="Informe um valor válido! (apenas números)">
+                                <f:convertNumber type="currency" pattern="0.00"/>
+                            </p:inputText>
+
+                            <p:outputLabel value="Forma de Pagamento:"/>
+                            <p:inputText size="40" maxlength="100"
+                                         value="#{receitaController.receitaEdicao.formaPGTO}"
+                                         requiredMessage="O campo nome é obrigadorio!"/>
+                        </p:panelGrid>
+                        <p:panelGrid columns="2">
+                            <p:commandButton value="Salvar"
+                                             actionListener="#{receitaController.alterarReceita()}"
+                                             update="msg_edit tabela"/>
+
+                            <p:commandButton value="Cancelar"
+                                             actionListener="#{receitaController.cancelar()}"
+                                             process="tabela"/>
+
+                        </p:panelGrid>
+                    </p:dialog>
+                </p:splitterPanel>,
+            </p:splitter>
+        </div>
+
+    </h:form>
+
+</h:body>
+</html>

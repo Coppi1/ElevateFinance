@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jc="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Projeto</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="/styles.css"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:panel header="Entre ou Cadastre-se">
+            <p:messages id="mensagem" closable="true"/>
+
+            <div class="card">
+                <h5>Bem Vindo</h5>
+                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid columns="1">
+                            <p:outputLabel value="Faça seu cadastro!"/>
+
+                            <p:button value="Criar conta" outcome="telaCadastro.xhtml"/>
+
+                            <p:graphicImage library="imglogin" name="logoCompleta.png" style=" width: 90%; display: block;"/>
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
+
+                <h5>Login</h5>
+                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid id="painelLogin" columns="2">
+                            <p:outputLabel value="Seu e-mail: "/>
+                            <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true" requiredMessage="O campo 'E-mail' é obrigatório"/>
+
+                            <p:outputLabel value="Sua senha: "/>
+                            <p:inputText size="20" maxlength="20" value="#{loginController.loginSenha}" requiredMessage="O campo 'Senha' é obrigatório" converterMessage="O campo 'Senha' só aceita números inteiros"/>
+
+                            <p:button value="Entrar" update="mensagem painelLogin"/>
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en-us"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:head>
+    <title>Cadastre-se</title>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputScript name="primefaces/locales/locale-pt.js"/>
+    <h:outputStylesheet name="/styles.css"/>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:panel header="Cadastro">
+            <p:messages id="mensagem" closable="true"/>
+
+            <div class="card">
+                <h5>Bem Vindo</h5>
+                <p:splitter style="height: 1px; width: 1px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid columns="1">
+
+
+                            <p:graphicImage library="IMG" name="logoCompleta.png" style=" width: 90%; display: block;"/>
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
+
+                <h5>Insira seus Dados Abaixo</h5>
+                <p:splitter style="height: 260px; width: 550px" styleClass="mb-5">
+                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                        <h:panelGrid id="painelCadastro" columns="2">
+                            <p:outputLabel value="Nome Completo: "/>
+                            <p:inputText size="50" maxlength="50" value="#{usuarioController.cadastroUsuario.nome}"
+                                         required="true" requiredMessage="O campo 'Nome Completo' é obrigatório"/>
+
+                            <p:outputLabel value="CPF: "/>
+                            <p:inputText size="50" maxlength="11" value="#{usuarioController.cadastroUsuario.cpf}"
+                                         requiredMessage="O campo 'CPF' é obrigatório"
+                                         converterMessage="O campo 'CPF' só aceita números inteiros"/>
+
+                            <p:outputLabel value="E-mail: "/>
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.email}"
+                                         requiredMessage="O campo 'E-mail' é obrigatório"/>
+
+                            <p:outputLabel value="Senha: "/>
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.senha}"
+                                         requiredMessage="O campo 'Senha' é obrigatório"
+                                         converterMessage="O campo 'CPF' só aceita números inteiros"/>
+
+                            <p:outputLabel value="Telefone/Celular:"/>
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.cel}"
+                                         requiredMessage="O campo 'Telefone ou Celular' é obrigatório"
+                                         converterMessage="O campo 'Telefone ou Celular' só aceita números inteiros"/>
+
+
+                            <p:button value="Cadastrar" outcome="telaLogin.xhtml" update="mensagem painelCadastro"/>
+
+                            <p:button value="Voltar" outcome="telaLogin.xhtml"/>
+
+
+                        </h:panelGrid>
+                    </p:splitterPanel>
+                </p:splitter>
+            </div>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
+
+
+
+
+
+

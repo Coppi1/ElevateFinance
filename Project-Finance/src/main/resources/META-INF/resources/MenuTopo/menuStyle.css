@@ -5,7 +5,7 @@
     top: initial; /* A barra de menu ficará no topo da janela */
     left: initial;
     width: 100%; /* Cobrirá toda a largura da janela */
-    z-index: 1000; /* Define a ordem de empilhamento (ajuste conforme necessário) */
+    /*z-index: 1000; /* Define a ordem de empilhamento (ajuste conforme necessário) */
 }
 
 .spacer {

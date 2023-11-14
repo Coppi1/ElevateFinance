@@ -1,15 +1,13 @@
 package br.com.FinancePI.Entidades;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.faces.view.ViewScoped;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-
 
 @Entity
 @Component
@@ -25,10 +23,14 @@ public class Receita implements Serializable {
     private String descricao;
 
     @Temporal(TemporalType.DATE)
-    private LocalDate dtLancamento;
+    private LocalDate dataLancamento;
 
-    private Double valorBruto;
+    private Double valor;
 
+    private String FormaPGTO;
+
+    @ManyToOne
+    private Natureza natureza;
 
 
 }
