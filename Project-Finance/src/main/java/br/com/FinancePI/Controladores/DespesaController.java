@@ -1,8 +1,8 @@
 package br.com.FinancePI.Controladores;
 
-import br.com.FinancePI.DAO.CategoriaDespesaDAO;
+import br.com.FinancePI.DAO.NaturezaDAO;
 import br.com.FinancePI.DAO.DespesaDAO;
-import br.com.FinancePI.Entidades.CategoriaDespesa;
+import br.com.FinancePI.Entidades.Natureza;
 import br.com.FinancePI.Entidades.Despesa;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.view.ViewScoped;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode
@@ -32,7 +31,7 @@ public class DespesaController implements Serializable {
     DespesaDAO despDAO = new DespesaDAO();
 
     @Autowired
-    CategoriaDespesaDAO categDAO = new CategoriaDespesaDAO();
+    NaturezaDAO natDAO = new NaturezaDAO();
 
     @Inject
     private Despesa despesa;
@@ -44,16 +43,18 @@ public class DespesaController implements Serializable {
 
     private List<Despesa> listaDespesas;
 
-    private List<CategoriaDespesa> listaCategoriaDespesas;
+    private List<Natureza> listaNaturezas;
 
-    private CategoriaDespesa categoriaDespesa;
+    private Natureza natureza;
 
     private Despesa despesaEdicao = new Despesa();
 
     @PostConstruct
     public void init() {
-        listaCategoriaDespesas = categDAO.listarCategorias();
+        listaNaturezas = natDAO.listarCategorias();
 
+        dataInicio = LocalDate.now();
+        dataFim = LocalDate.now();
     }
 
 
@@ -61,7 +62,7 @@ public class DespesaController implements Serializable {
     public void salvar() {
 
         valorBoolean = "true";
-        despesa.setCategoriaDespesa(categoriaDespesa);
+        despesa.setNatureza(natureza);
         despDAO.inserir(despesa);
         despesa = new Despesa();
         Messages.addFlashGlobalInfo("Registro salvo com sucesso");
@@ -139,10 +140,6 @@ public class DespesaController implements Serializable {
 
     }
 
-   // public void cancelar() {
-        // Fechar a caixa de diálogo sem salvar as alterações
-  //      PrimeFaces.current().executeScript("PF('editDespesaDialog').hide();");
-   // }
 
 
 
