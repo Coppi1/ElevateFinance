@@ -108,7 +108,6 @@ public class ReceitaController implements Serializable {
 
     public void alterarReceita() {
 
-        valorBoolean = "true";
 
         recDAO.alterar(receita);
         Messages.addFlashGlobalInfo("Registro alterado com sucesso");

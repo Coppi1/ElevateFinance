@@ -33,4 +33,5 @@ public class Receita implements Serializable {
     private CategoriaReceita categoriaReceita;
 
 
+
 }

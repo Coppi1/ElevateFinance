@@ -1,13 +1,11 @@
-package br.com.helloworld.Entidades;
+package br.com.FinancePI.Entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Component
@@ -22,17 +20,24 @@ public class Usuario implements Serializable {
 
     private String nome;
 
-    private String email;
-
-    private String senha;
-
     private String endereco;
 
-    private Integer cpf;
-
-    private Integer cel;
+    private String cep;
 
     private String estado;
 
-    private String cidade;
+    private String email;
+
+    private Integer celular;
+
+    private String senha;
+
+    private Integer cpf;
+
+    private Integer cnpj;
+
+    private Integer contaBancario;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate dataInclusao;
 }
