@@ -55,16 +55,23 @@
                             <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.senha}"
                                          requiredMessage="O campo 'Senha' é obrigatório"
                                          converterMessage="O campo 'CPF' só aceita números inteiros"/>
+                            <h4>Senha:</h4>
+                            <p:password id="Senha" value="#{passwordView.password3}" feedback="true"
+                                        promptLabel="Informe sua senha" weakLabel="Fraca"
+                                        goodLabel="Média" strongLabel="Forte" toggleMask="true" redisplay="true"/>
 
-                            <p:outputLabel value="Telefone/Celular:"/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.cel}"
-                                         requiredMessage="O campo 'Telefone ou Celular' é obrigatório"
-                                         converterMessage="O campo 'Telefone ou Celular' só aceita números inteiros"/>
+                            <h4>Repetir Senha:</h4>
+                            <p:password id="RepetirSenha" value="#{passwordView.password3}"
+                                        toggleMask="true" redisplay="true"/>
+
+
+                                <p:outputLabel for="@next" value="Telefone" />
+                                <p:inputMask id="phone" value="#{usuarioController.cadastroUsuario.cel}" mask="(99) 99999-9999" validateMask="true" />
 
 
 
                             <p:outputLabel for="estadoDropdown" value="Estado:"/>
-                            <p:selectOneMenu id="estadoDropdown" value="#{yourBean.selectedState}">
+                            <p:selectOneMenu id="estadoDropdown" value="#{usuarioController.cadastroUsuario.estado}">
                                 <f:selectItem itemLabel="Selecione " itemDisabled="true"/>
                                 <f:selectItem itemValue="AC" itemLabel="Acre-AC"/>
                                 <f:selectItem itemValue="AL" itemLabel="Alagoas-AL"/>

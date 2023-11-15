@@ -1,9 +1,6 @@
-package br.com.helloworld.Entidades;
+package br.com.FinancePI.Entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -35,4 +32,10 @@ public class Usuario implements Serializable {
     private String estado;
 
     private String cidade;
+
+    private Integer cnpj;
+
+
+
+
 }
