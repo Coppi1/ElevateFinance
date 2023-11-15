@@ -36,6 +36,8 @@ public class Usuario implements Serializable {
     private Integer cnpj;
 
 
+    @OneToMany conta
+
 
 
 }
