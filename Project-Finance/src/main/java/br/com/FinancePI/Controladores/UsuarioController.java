@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.omnifaces.util.Messages;
 import org.omnifaces.util.Utils;
+import org.primefaces.PrimeFaces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -81,4 +82,13 @@ public class UsuarioController implements Serializable {
             Messages.addFlashGlobalInfo("Cadastro de usuario nao lolizado");
         }
     }
+
+    public void verUsuario(Usuario usuario) {
+
+        usuarioEdicao = usuario;
+
+        PrimeFaces.current().executeScript("PF('editDespesaDialog').show();");
+    }
+
+
 }

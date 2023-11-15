@@ -98,13 +98,39 @@
                                              update="mensagem painelCadastro"/>
 
                             <p:commandButton value="Alterar"
-                                             actionListener="#{usuarioController.alterar()}"
-                                             update="mensagem painelCadastro"/>
+                                             icon="pi pi-search" styleClass="rounded-button ui-button-success"
+                                             actionListener="#{usuarioController.verUsuario(Usuario)}"
+                                             update=":formDialogo:editUsuario"/>
+
+                            <p:outputLabel value="Nome Completo: "/>
+                            <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.nome}"
+                                         required="true" requiredMessage="O campo 'Nome Completo' é obrigatório"/>
+
                         </h:panelGrid>
                     </p:splitterPanel>
                 </p:splitter>
             </div>
         </p:panel>
     </h:form>
+
+
+    <p:dialog width="950" header="Editar Usuario" widgetVar="editarUsuario"
+              closable="true" id="editarUsuarioDialog">
+        <h:form id="formDialogo">
+
+            <p:messages id="msgedit" closable="true"/>
+            <p:panelGrid id="editarUsuariomsg" columns="2">
+                <p:outputLabel value="Codigo de registro"/>
+                <p:inputText size="2" maxlength="5" readonly="true"
+                             value="#{usuarioController.usuarioEdicao.id}"/>
+
+                <p:outputLabel value="CPF: "/>
+                <p:inputText size="50" maxlength="25" value="#{u}"
+                             requiredMessage="O campo 'CPF' é obrigatório"
+                             converterMessage="O campo 'CPF' só aceita números inteiros"/>
+
+            </p:panelGrid>
+        </h:form>
+    </p:dialog>
 </h:body>
 </html>
