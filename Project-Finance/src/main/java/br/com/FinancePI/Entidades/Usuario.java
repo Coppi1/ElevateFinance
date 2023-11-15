@@ -3,6 +3,7 @@ package br.com.FinancePI.Entidades;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,9 +27,11 @@ public class Usuario implements Serializable {
 
     private String estado;
 
+    private String cidade;
+
     private String email;
 
-    private Integer celular;
+    private String celular;
 
     private String senha;
 

@@ -1,70 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html lang="en-us"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
 <h:head>
     <title>Cadastre-se</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
-
-
-
 </h:head>
-
 <h:body>
     <h:form>
         <p:panel header="Cadastro">
             <p:messages id="mensagem" closable="true"/>
-
             <div class="card">
                 <h5>Bem Vindo</h5>
                 <p:splitter style="height: 1px; width: 1px" styleClass="mb-5">
                     <p:splitterPanel styleClass="flex align-items-center justify-content-center">
                         <h:panelGrid columns="1">
-
-
                         </h:panelGrid>
                     </p:splitterPanel>
                 </p:splitter>
-
                 <h5>Insira seus Dados Abaixo</h5>
                 <p:splitter style="height: 390px; width: 550px" styleClass="mb-5">
                     <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+
                         <h:panelGrid id="painelCadastro" columns="2">
                             <p:outputLabel value="Nome Completo: "/>
-                            <p:inputText size="50" maxlength="50" value="#{usuarioController.cadastroUsuario.nome}"
+                            <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.nome}"
                                          required="true" requiredMessage="O campo 'Nome Completo' é obrigatório"/>
 
                             <p:outputLabel value="CPF: "/>
-                            <p:inputText size="50" maxlength="11" value="#{usuarioController.cadastroUsuario.cpf}"
+                            <p:inputText size="50" maxlength="25" value="#{usuarioController.usuario.cpf}"
                                          requiredMessage="O campo 'CPF' é obrigatório"
                                          converterMessage="O campo 'CPF' só aceita números inteiros"/>
 
                             <p:outputLabel value="E-mail: "/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.email}"
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.email}"
                                          requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-                            <p:outputLabel value="Senha: "/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.senha}"
-                                         requiredMessage="O campo 'Senha' é obrigatório"
-                                         converterMessage="O campo 'CPF' só aceita números inteiros"/>
+                            <div class="field col-12 md:col-4">
+                                <p:outputLabel for="@next" value="Telefone"/>
+                                <p:inputMask id="phone" value="#{usuarioController.usuario.celular}"
 
-                            <p:outputLabel value="Telefone/Celular:"/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.cel}"
-                                         requiredMessage="O campo 'Telefone ou Celular' é obrigatório"
-                                         converterMessage="O campo 'Telefone ou Celular' só aceita números inteiros"/>
-
-
+                                             mask="(99)99999-9999"
+                                             validateMask="true"/>
+                            </div>
 
                             <p:outputLabel for="estadoDropdown" value="Estado:"/>
-                            <p:selectOneMenu id="estadoDropdown" value="#{yourBean.selectedState}">
+                            <p:selectOneMenu id="estadoDropdown" value="#{usuarioController.usuario.estado}">
                                 <f:selectItem itemLabel="Selecione " itemDisabled="true"/>
                                 <f:selectItem itemValue="AC" itemLabel="Acre-AC"/>
                                 <f:selectItem itemValue="AL" itemLabel="Alagoas-AL"/>
@@ -93,24 +80,26 @@
                                 <f:selectItem itemValue="SP" itemLabel="São Paulo-SP"/>
                                 <f:selectItem itemValue="SE" itemLabel="Sergipe-SE"/>
                                 <f:selectItem itemValue="TO" itemLabel="Tocantins-TO"/>
-
-
                             </p:selectOneMenu>
-
-
-
                             <p:outputLabel value="Cidade: "/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.cadastroUsuario.cidade}"
+                            <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.cidade}"
                                          requiredMessage="O campo 'Cidade' é obrigatório"/>
-
-
                             <p:button value="Cadastrar" outcome="telaLogin.xhtml" update="mensagem painelCadastro"/>
-
                             <p:button value="Voltar" outcome="telaLogin.xhtml"/>
+                        </h:panelGrid>
 
+                        <h:panelGrid columns="3">
+                            <p:commandButton value="Salvar"
+                                             actionListener="#{usuarioController.cadastro()}"
+                                             update="mensagem painelCadastro"/>
 
+                            <p:commandButton value="Excluir"
+                                             actionListener="#{usuarioController.excluir()}"
+                                             update="mensagem painelCadastro"/>
 
-
+                            <p:commandButton value="Alterar"
+                                             actionListener="#{usuarioController.alterar()}"
+                                             update="mensagem painelCadastro"/>
                         </h:panelGrid>
                     </p:splitterPanel>
                 </p:splitter>
@@ -119,9 +108,3 @@
     </h:form>
 </h:body>
 </html>
-
-
-
-
-
-

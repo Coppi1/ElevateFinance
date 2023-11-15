@@ -32,7 +32,8 @@ public class UsuarioController implements Serializable {
     private Usuario usuarioEdicao = new Usuario();
 
     //Metodo para cadastrar um novo usuario
-    public void cadastro(Usuario usuario) {
+
+    public void cadastro() {
 
         usuarioDAO.inserirUsuario(usuario);
         usuario = new Usuario();
