@@ -44,15 +44,15 @@ public class ReceitaController implements Serializable {
 
     private List<Receita> listaReceitas;
 
-    private List<Natureza> listaCategoriaReceitas;
+    private List<Natureza> listanatureza;
 
-    private Natureza categoriaReceita;
+    private Natureza natureza;
 
 
 
     @PostConstruct
     public void init() {
-        listaCategoriaReceitas = natDAO.listarCategorias();
+        listanatureza = natDAO.listarCategorias();
     }
 
     public void salvar() {

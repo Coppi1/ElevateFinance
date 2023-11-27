@@ -50,11 +50,11 @@
 
 
                             <p:outputLabel value="Natureza:"/>
-                            <p:selectOneMenu value="#{receitaController.categoriaReceita}"
+                            <p:selectOneMenu value="#{receitaController.receita.natureza}"
                                              converter="omnifaces.SelectItemsConverter">
                                 <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
-                                <f:selectItems value="#{receitaController.listaCategoriaReceitas}" var="categoria"
-                                               itemLabel="#{categoria.descricao}"/>
+                                <f:selectItems value="#{receitaController.listanatureza}" var="categoria"
+                                               itemLabel="#{natureza.descricao}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Data de Lançamento:"/>
@@ -129,7 +129,7 @@
                                     #{Receita.descricao}
                                 </p:column>
                                 <p:column headerText="Natureza">
-                                    #{Receita.categoriaReceita}
+                                    #{Receita.natureza}
                                 </p:column>
                                 <p:column headerText="Data de Lançamento">
                                     #{Receita.dataLancamento}
@@ -168,11 +168,11 @@
                                          requiredMessage="O campo Descrição é obrigadorio!"/>
 
                             <p:outputLabel value="Natureza:"/>
-                            <p:selectOneMenu value="#{receitaController.receitaEdicao.categoriaReceita}"
+                            <p:selectOneMenu value="#{receitaController.receitaEdicao.natureza}"
                                              converter="omnifaces.SelectItemsConverter">
                                 <f:selectItem itemLabel="Selecione Um" itemDisabled="true"/>
-                                <f:selectItems value="#{receitaController.listaCategoriaReceitas}" var="categoria"
-                                               itemLabel="#{categoria.descricao}"/>
+                                <f:selectItems value="#{receitaController.natureza}" var="categoria"
+                                               itemLabel="#{natureza.descricao}"/>
                             </p:selectOneMenu>
 
                             <p:outputLabel value="Data de Lançamento:"/>
