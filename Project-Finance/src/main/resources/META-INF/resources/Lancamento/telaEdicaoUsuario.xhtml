@@ -1,0 +1,39 @@
+
+<p:dialog width="950" header="Editar Usuario" widgetVar="editarUsuario"
+          closable="true" id="editarUsuarioDialog">
+    <h:form id="formDialogo">
+        <p:panel>
+            <p:messages id="msgedit" closable="true"/>
+            <p:panelGrid id="editarUsuariomsg" columns="2">
+                <p:outputLabel value="Codigo de registro"/>
+                <p:inputText size="2" maxlength="5" readonly="true"
+                             value="#{usuarioController.usuarioEdicao.id}"/>
+
+                <p:outputLabel value="CPF: "/>
+                <p:inputText size="50" maxlength="25" value="#{usuarioController.usuarioEdicao.cpf}"
+                             requiredMessage="O campo 'CPF' é obrigatório"
+                             converterMessage="O campo 'CPF' só aceita números inteiros"/>
+
+                <p:outputLabel value="E-mail: "/>
+                <p:inputText size="50" maxlength="20" value="#{usuarioController.usuarioEdicao.email}"
+                             requiredMessage="O campo 'E-mail' é obrigatório"/>
+
+                <div class="field col-12 md:col-4">
+                    <p:outputLabel for="@next" value="Telefone"/>
+                    <p:inputMask id="phoneEdi" value="#{usuarioController.usuarioEdicao.celular}"
+
+                                 mask="(99)99999-9999"
+                                 validateMask="true"/>
+                </div>
+            </p:panelGrid>
+
+            <p:panelGrid columns="2">
+                <p:commandButton value="Salvar"
+                                 actionListener="#{usuarioController.alterar()}"
+                                 update="msgedit :form"/>
+                <p:commandButton value="Cancelar" oncomplete="PF('editarUsuarioDialog').hide();"/>
+            </p:panelGrid>
+        </p:panel>
+    </h:form>
+</p:dialog>
+        </h:body>

@@ -19,40 +19,38 @@
     <h:outputStylesheet name="/styles.css"/>
 </h:head>
 
+
+
 <h:body>
+
     <h:form>
-        <p:panel header="Entre ou Cadastre-se">
+
+        <p:panel header="ELEVATE FINANCE - FAZER LOGIN/CADASTRAR">
+
             <p:messages id="mensagem" closable="true"/>
 
-            <div class="card">
-                <h5>Bem Vindo</h5>
-                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
-                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
-                        <h:panelGrid columns="1">
-                            <p:outputLabel value="Faça seu cadastro!"/>
 
-                            <p:button value="Criar conta" outcome="telaCadastro.xhtml"/>
+            <h:panelGrid columns="2">
 
-                            <p:graphicImage library="imglogin" name="logoCompleta.png" style=" width: 90%; display: block;"/>
-                        </h:panelGrid>
-                    </p:splitterPanel>
-                </p:splitter>
+                <p:outputLabel value="Seu e-mail: "/>
+                <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true"
+                             requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-                <h5>Login</h5>
-                <p:splitter style="height: 150px; width: 300px" styleClass="mb-5">
-                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
-                        <h:panelGrid id="painelLogin" columns="2">
-                            <p:outputLabel value="Seu e-mail: "/>
-                            <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true" requiredMessage="O campo 'E-mail' é obrigatório"/>
+                <p:outputLabel value="Sua senha: "/>
+                <p:inputText size="20" maxlength="20" value="#{loginController.loginSenha}"
+                             requiredMessage="O campo 'Senha' é obrigatório"
+                             converterMessage="O campo 'Senha' só aceita números inteiros"/>
 
-                            <p:outputLabel value="Sua senha: "/>
-                            <p:inputText size="20" maxlength="20" value="#{loginController.loginSenha}" requiredMessage="O campo 'Senha' é obrigatório" converterMessage="O campo 'Senha' só aceita números inteiros"/>
+                <p:button value="Criar conta" outcome="telaCadastro.xhtml"/>
+                <p:button value="Login" outcome="telaCadastro.xhtml"/>
 
-                            <p:button value="Entrar" update="mensagem painelLogin"/>
-                        </h:panelGrid>
-                    </p:splitterPanel>
-                </p:splitter>
+            </h:panelGrid>
+
+            <div>
+                <h:graphicImage library="imagem" name="logoCompleta.png" style="float: right;"
+                                styleClass="right-image"/>
             </div>
+
         </p:panel>
     </h:form>
 </h:body>

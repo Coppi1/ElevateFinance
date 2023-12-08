@@ -11,143 +11,121 @@
     <title>Cadastre-se</title>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
+
 </h:head>
+
+
 <h:body>
+
+
     <h:form i="form">
         <p:panel header="Cadastro">
             <p:messages id="mensagem" closable="true"/>
-            <div class="card">
-                <h5>Bem Vindo</h5>
-                <p:splitter style="height: 1px; width: 1px" styleClass="mb-5">
-                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
-                        <h:panelGrid columns="1">
-                        </h:panelGrid>
-                    </p:splitterPanel>
-                </p:splitter>
-                <h5>Insira seus Dados Abaixo</h5>
-                <p:splitter style="height: 390px; width: 550px" styleClass="mb-5">
-                    <p:splitterPanel styleClass="flex align-items-center justify-content-center">
 
-                        <h:panelGrid id="painelCadastro" columns="2">
-                            <p:outputLabel value="Nome Completo: "/>
-                            <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.nome}"
-                                         required="true" requiredMessage="O campo 'Nome Completo' é obrigatório"/>
+            <h5>Bem Vindo</h5>
 
-                            <p:outputLabel for="@next" value="CPF:"/>
-                            <p:inputMask id="ssn" value="#{usuarioController.usuario.cpf}" mask="999.999.999-99"
-                                         validateMask="true"
-                                         requiredMessage="O campo 'CPF' é obrigatório"
-                                         converterMessage="O campo 'CPF' só aceita números inteiros"/>
+            <h5>Insira seus Dados Abaixo</h5>
 
-                            <p:outputLabel value="E-mail: "/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.email}"
-                                         requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-                            <div class="field col-12 md:col-4">
-                                <p:outputLabel for="@next" value="Telefone"/>
-                                <p:inputMask id="phone" value="#{usuarioController.usuario.celular}"
+            <h:panelGrid id="painelCadastro" columns="2">
 
-                                             mask="(99)99999-9999"
-                                             validateMask="true"/>
-                            </div>
+                <p:outputLabel value="Nome Completo: "/>
+                <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.nome}"
+                             required="true" requiredMessage="O campo 'Nome Completo' é obrigatório"/>
 
-                            <p:outputLabel for="estadoDropdown" value="Estado:"/>
-                            <p:selectOneMenu id="estadoDropdown" value="#{usuarioController.usuario.estado}">
-                                <f:selectItem itemLabel="Selecione " itemDisabled="true"/>
-                                <f:selectItem itemValue="AC" itemLabel="Acre-AC"/>
-                                <f:selectItem itemValue="AL" itemLabel="Alagoas-AL"/>
-                                <f:selectItem itemValue="AP" itemLabel="Amapá-AP"/>
-                                <f:selectItem itemValue="AM" itemLabel="Amazonas-AM"/>
-                                <f:selectItem itemValue="BA" itemLabel="Bahia-BA"/>
-                                <f:selectItem itemValue="CE" itemLabel="Ceará-CE"/>
-                                <f:selectItem itemValue="DF" itemLabel="Distrito Federal-DF"/>
-                                <f:selectItem itemValue="ES" itemLabel="Espirito Santo-ES"/>
-                                <f:selectItem itemValue="GO" itemLabel="Goias-GO"/>
-                                <f:selectItem itemValue="MA" itemLabel="Maranhão-MA"/>
-                                <f:selectItem itemValue="MT" itemLabel="Mato Grosso-MT"/>
-                                <f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul-MS"/>
-                                <f:selectItem itemValue="MG" itemLabel="Minas Gerais-MG"/>
-                                <f:selectItem itemValue="PA" itemLabel="Pará-PA"/>
-                                <f:selectItem itemValue="PB" itemLabel="Paraíba-PB"/>
-                                <f:selectItem itemValue="PR" itemLabel="Paraná-PR"/>
-                                <f:selectItem itemValue="PE" itemLabel="Pernanbuco-PE"/>
-                                <f:selectItem itemValue="PI" itemLabel="Piauí-PI"/>
-                                <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro-RJ"/>
-                                <f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte-RN"/>
-                                <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul-RS"/>
-                                <f:selectItem itemValue="RO" itemLabel="Rondônia-RO"/>
-                                <f:selectItem itemValue="RR" itemLabel="Roraima-RR"/>
-                                <f:selectItem itemValue="SC" itemLabel="Santa Catarina-SC"/>
-                                <f:selectItem itemValue="SP" itemLabel="São Paulo-SP"/>
-                                <f:selectItem itemValue="SE" itemLabel="Sergipe-SE"/>
-                                <f:selectItem itemValue="TO" itemLabel="Tocantins-TO"/>
-                            </p:selectOneMenu>
-                            <p:outputLabel value="Cidade: "/>
-                            <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.cidade}"
-                                         requiredMessage="O campo 'Cidade' é obrigatório"/>
-                            <p:button value="Cadastrar" outcome="telaLogin.xhtml" update="mensagem painelCadastro"/>
-                            <p:button value="Voltar" outcome="telaLogin.xhtml"/>
-                        </h:panelGrid>
+                <p:outputLabel for="@next" value="CPF:"/>
+                <p:inputMask id="cpf" size="50" value="#{usuarioController.usuario.cpf}" mask="999.999.999-99"
+                             validateMask="false"
+                             requiredMessage="O campo 'CPF' é obrigatório"
+                             converterMessage="O campo 'CPF' só aceita números inteiros"/>
 
-                        <h:panelGrid columns="4">
-                            <p:commandButton value="Salvar"
-                                             actionListener="#{usuarioController.cadastro()}"
-                                             update="mensagem painelCadastro"/>
 
-                            <p:commandButton value="Excluir"
-                                             actionListener="#{usuarioController.excluir()}"
-                                             update="mensagem painelCadastro"/>
-                        </h:panelGrid>
+                <p:outputLabel value="E-mail: "/>
+                <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.email}"
+                             requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-                        <p:column>
-                            <p:commandButton type="button" value="Editar" styleClass="ui-button-raised"
-                                             actionListener="#{usuarioController.verUsuario(Usuario)}"
-                                             update="formDialogo"/>
-                        </p:column>
+                <p:outputLabel for="@next" value="Telefone"/>
+                <p:inputMask id="phone" size="50" value="#{usuarioController.usuario.celular}"
 
-                    </p:splitterPanel>
-                </p:splitter>
-            </div>
+                             mask="(99)99999-9999"
+                             validateMask="true"/>
+
+
+                <p:outputLabel for="estadoDropdown" value="Estado:"/>
+                <p:selectOneMenu id="estadoDropdown" value="#{usuarioController.usuario.estado}">
+                    <f:selectItem itemLabel="Selecione " itemDisabled="true"/>
+                    <f:selectItem itemValue="AC" itemLabel="Acre-AC"/>
+                    <f:selectItem itemValue="AL" itemLabel="Alagoas-AL"/>
+                    <f:selectItem itemValue="AP" itemLabel="Amapá-AP"/>
+                    <f:selectItem itemValue="AM" itemLabel="Amazonas-AM"/>
+                    <f:selectItem itemValue="BA" itemLabel="Bahia-BA"/>
+                    <f:selectItem itemValue="CE" itemLabel="Ceará-CE"/>
+                    <f:selectItem itemValue="DF" itemLabel="Distrito Federal-DF"/>
+                    <f:selectItem itemValue="ES" itemLabel="Espirito Santo-ES"/>
+                    <f:selectItem itemValue="GO" itemLabel="Goias-GO"/>
+                    <f:selectItem itemValue="MA" itemLabel="Maranhão-MA"/>
+                    <f:selectItem itemValue="MT" itemLabel="Mato Grosso-MT"/>
+                    <f:selectItem itemValue="MS" itemLabel="Mato Grosso do Sul-MS"/>
+                    <f:selectItem itemValue="MG" itemLabel="Minas Gerais-MG"/>
+                    <f:selectItem itemValue="PA" itemLabel="Pará-PA"/>
+                    <f:selectItem itemValue="PB" itemLabel="Paraíba-PB"/>
+                    <f:selectItem itemValue="PR" itemLabel="Paraná-PR"/>
+                    <f:selectItem itemValue="PE" itemLabel="Pernanbuco-PE"/>
+                    <f:selectItem itemValue="PI" itemLabel="Piauí-PI"/>
+                    <f:selectItem itemValue="RJ" itemLabel="Rio de Janeiro-RJ"/>
+                    <f:selectItem itemValue="RN" itemLabel="Rio Grande do Norte-RN"/>
+                    <f:selectItem itemValue="RS" itemLabel="Rio Grande do Sul-RS"/>
+                    <f:selectItem itemValue="RO" itemLabel="Rondônia-RO"/>
+                    <f:selectItem itemValue="RR" itemLabel="Roraima-RR"/>
+                    <f:selectItem itemValue="SC" itemLabel="Santa Catarina-SC"/>
+                    <f:selectItem itemValue="SP" itemLabel="São Paulo-SP"/>
+                    <f:selectItem itemValue="SE" itemLabel="Sergipe-SE"/>
+                    <f:selectItem itemValue="TO" itemLabel="Tocantins-TO"/>
+                </p:selectOneMenu>
+                <p:outputLabel value="Cidade: "/>
+                <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.cidade}"
+                             requiredMessage="O campo 'Cidade' é obrigatório"/>
+
+                <p:outputLabel value="CEP: "/>
+                <p:inputText size="50" maxlength="20" value="#{usuarioController.usuario.cep}"
+                             requiredMessage="Preencher o campo CEP"/>
+
+                <p:outputLabel value="Endereço: "/>
+                <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.endereco}"
+                             requiredMessage="O campo 'Endereço é obrigatorio"/>
+
+                <p:outputLabel value="CNPJ - Pessoa Juridica: "/>
+                <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.cnpj}"
+                             requiredMessage="O campo 'CNPJ é obrigatorio se for Pessoa Juridica"/>
+
+
+                <p:outputLabel value="Conta Bancaria: "/>
+                <p:inputText size="50" maxlength="50" value="#{usuarioController.usuario.contaBancaria}"
+                             requiredMessage="O campo 'Conta bancaria é obrigatorio"/>
+
+                <p:outputLabel value="Senha: "/>
+                <p:password id="senha" value="#{usuarioController.usuario.senha}" feedback="true"
+                            promptLabel="Informe sua senha" weakLabel="Fraca"
+                            goodLabel="Boa" strongLabel="Forte"/>
+
+                <p:outputLabel value="Repitir Senha: "/>
+                <p:password id="senhaRepete" value="#{usuarioController.usuario.senha}" feedback="true"
+                            promptLabel="Informe sua senha" weakLabel="Fraca"
+                            goodLabel="Boa" strongLabel="Forte"/>
+
+
+            </h:panelGrid>
+
+            <h:panelGrid columns="2">
+
+                <p:commandButton value="Salvar"
+                                 actionListener="#{usuarioController.salvar()}"
+                                 update="mensagem painelCadastro"/>
+
+                <p:button value="Voltar" outcome="telaLogin.xhtml"/>
+            </h:panelGrid>
+
         </p:panel>
     </h:form>
-
-
-    <p:dialog width="950" header="Editar Usuario" widgetVar="editarUsuario"
-              closable="true" id="editarUsuarioDialog">
-        <h:form id="formDialogo">
-            <p:panel>
-                <p:messages id="msgedit" closable="true"/>
-                <p:panelGrid id="editarUsuariomsg" columns="2">
-                    <p:outputLabel value="Codigo de registro"/>
-                    <p:inputText size="2" maxlength="5" readonly="true"
-                                 value="#{usuarioController.usuarioEdicao.id}"/>
-
-                    <p:outputLabel value="CPF: "/>
-                    <p:inputText size="50" maxlength="25" value="#{usuarioController.usuarioEdicao.cpf}"
-                                 requiredMessage="O campo 'CPF' é obrigatório"
-                                 converterMessage="O campo 'CPF' só aceita números inteiros"/>
-
-                    <p:outputLabel value="E-mail: "/>
-                    <p:inputText size="50" maxlength="20" value="#{usuarioController.usuarioEdicao.email}"
-                                 requiredMessage="O campo 'E-mail' é obrigatório"/>
-
-                    <div class="field col-12 md:col-4">
-                        <p:outputLabel for="@next" value="Telefone"/>
-                        <p:inputMask id="phoneEdi" value="#{usuarioController.usuarioEdicao.celular}"
-
-                                     mask="(99)99999-9999"
-                                     validateMask="true"/>
-                    </div>
-                </p:panelGrid>
-
-                <p:panelGrid columns="2">
-                    <p:commandButton value="Salvar"
-                                     actionListener="#{usuarioController.alterar()}"
-                                     update="msgedit :form"/>
-                    <p:commandButton value="Cancelar" oncomplete="PF('editarUsuarioDialog').hide();"/>
-                </p:panelGrid>
-            </p:panel>
-        </h:form>
-    </p:dialog>
 </h:body>
 </html>

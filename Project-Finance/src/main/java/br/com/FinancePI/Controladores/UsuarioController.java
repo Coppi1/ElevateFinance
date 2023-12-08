@@ -42,6 +42,14 @@ public class UsuarioController implements Serializable {
 
     }
 
+    public void salvar(){
+
+        usuarioDAO.inserirUsuario(usuario);
+        usuario = new Usuario();
+        Messages.addFlashGlobalInfo("Registro salvo com sucesso");
+    }
+
+
     //Metodo para fazer a exclusao de um usuario
     public void excluir() {
 
@@ -83,12 +91,15 @@ public class UsuarioController implements Serializable {
         }
     }
 
-    public void verUsuario(Usuario usuario) {
+    public void entrar(Usuario usuario) {
 
-        usuarioEdicao = usuario;
 
-        PrimeFaces.current().executeScript("PF('editDespesaDialog').show();");
+        if(usuario == null) {
+            throw new RuntimeException("Usuario não cadastrado");
+        }
+
+
+
     }
-
 
 }

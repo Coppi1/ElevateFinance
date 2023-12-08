@@ -35,11 +35,11 @@ public class Usuario implements Serializable {
 
     private String senha;
 
-    private Integer cpf;
+    private String cpf;
 
-    private Integer cnpj;
+    private String cnpj;
 
-    private Integer contaBancario;
+    private Integer contaBancaria;
 
     @Temporal(TemporalType.DATE)
     private LocalDate dataInclusao;
