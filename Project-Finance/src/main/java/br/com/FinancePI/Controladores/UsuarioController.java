@@ -51,45 +51,9 @@ public class UsuarioController implements Serializable {
 
 
     //Metodo para fazer a exclusao de um usuario
-    public void excluir() {
+    
 
-        if (usuario.getId() != null) {
 
-            Usuario exclusaoUsuario = usuarioDAO.buscarUsuarioId(usuario.getId());
-            if (exclusaoUsuario != null) {
-                usuarioDAO.excluirUsuario(exclusaoUsuario);
-                Messages.addFlashGlobalInfo("Cadastro de usuario excluido com sucesso");
-            } else {
-                Messages.addFlashGlobalInfo("Cadastro de usuario nao encontrado");
-            }
-
-        } else {
-            Messages.addFlashGlobalInfo("Codigo de usuario nao encontrado");
-        }
-    }
-
-    //Metodo para alterar o registro do usuario
-    public void alterar() {
-
-        usuarioDAO.alterarUsuario(usuario);
-        Messages.addFlashGlobalInfo("Cadastro de usuario alterado com sucesso");
-        usuarioEdicao = new Usuario();
-
-    }
-
-    public void buscarUsuario() {
-
-        if (usuario.getId() != null) {
-
-            Usuario usuarioLocalizado = usuarioDAO.buscarUsuarioId(usuario.getId());
-            if (usuarioLocalizado != null) {
-                usuarioDAO.buscarUsuarioId(usuarioLocalizado.getId());
-                Messages.addFlashGlobalInfo("Cadastro de usuario localizado com sucesso");
-            }
-        } else {
-            Messages.addFlashGlobalInfo("Cadastro de usuario nao lolizado");
-        }
-    }
 
     public void entrar(Usuario usuario) {
 
