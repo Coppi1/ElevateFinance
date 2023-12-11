@@ -1,5 +1,6 @@
 package br.com.FinancePI.DAO;
 
+import br.com.FinancePI.Entidades.Despesa;
 import br.com.FinancePI.Entidades.Usuario;
 import jakarta.inject.Inject;
 import jakarta.persistence.*;
@@ -38,31 +39,11 @@ public class UsuarioDAO implements Serializable {
         }
         entityManager.remove(usuario);
     }
-
-
     @Transactional
-    public Usuario buscarUsuarioId(int id) {
-        return entityManager.find(Usuario.class, id);
-    }
-
-    @Transactional
-    public void alterarUsuario(Usuario u) {
-        entityManager.merge(u);
-    }
-
-    public Usuario buscarPorSenhaEmail(String email, String senha) {
-
-        String buscar = "SELECT u FROM Usuario u WHERE u.email = :email AND u.senha = :senha";
-        Query pesquisa = entityManager.createQuery(buscar);
-        pesquisa.setParameter("email", email);
-        pesquisa.setParameter("senha", senha);
-        List<Usuario> usuarios = pesquisa.getResultList();
-
-        if (!usuarios.isEmpty()) {
-            return usuarios.get(0);
-        }
-        return null;
-
+    public Usuario buscaPorEmail(String email){
+        return entityManager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email", Usuario.class)
+                .setParameter("email", email)
+                .getSingleResult();
     }
 
 }

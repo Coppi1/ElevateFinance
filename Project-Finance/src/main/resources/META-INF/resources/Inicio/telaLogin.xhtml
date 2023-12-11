@@ -20,38 +20,33 @@
 </h:head>
 
 
-
 <h:body>
 
     <h:form>
 
-        <p:panel header="ELEVATE FINANCE - FAZER LOGIN/CADASTRAR">
+        <div id="mainContainer">
+            <div id="camposTelaLogin">
+                <p:panel header="Faça Login ou Cadastre-se!" >
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Seu e-mail:"/>
+                    <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true"
+                                 requiredMessage="O campo 'E-mail' é obrigatório"/>
 
-            <p:messages id="mensagem" closable="true"/>
+                    <p:outputLabel value="Sua senha: "/>
+                    <h:inputSecret size="20" maxlength="20" value="#{loginController.loginSenha}"
+                                 requiredMessage="O campo 'Senha' é obrigatório"
+                                 converterMessage="O campo 'Senha' só aceita números inteiros"/>
 
+                    <p:commandButton value="Login" actionListener="#{loginController.login()}"/>
+                    <p:button value="Cadastre-se" outcome="telaCadastro.xhtml"/>
 
-            <h:panelGrid columns="2">
-
-                <p:outputLabel value="Seu e-mail: "/>
-                <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true"
-                             requiredMessage="O campo 'E-mail' é obrigatório"/>
-
-                <p:outputLabel value="Sua senha: "/>
-                <p:inputText size="20" maxlength="20" value="#{loginController.loginSenha}"
-                             requiredMessage="O campo 'Senha' é obrigatório"
-                             converterMessage="O campo 'Senha' só aceita números inteiros"/>
-
-                <p:button value="Criar conta" outcome="telaCadastro.xhtml"/>
-                <p:button value="Login" outcome="telaCadastro.xhtml"/>
-
-            </h:panelGrid>
-
-            <div>
-                <h:graphicImage library="imagem" name="logoCompleta.png" style="float: right;"
-                                styleClass="right-image"/>
+                </h:panelGrid>
+                </p:panel>
             </div>
-
-        </p:panel>
+            <div id="imgTelaLogin">
+                <h:graphicImage library="imagem" name="logoCompleta.png" styleClass="right-image"/>
+            </div>
+        </div>
     </h:form>
 </h:body>
 

@@ -18,4 +18,31 @@ imagem{
     margin-left: 300px;
     margin-top: -50px;
 }
+#mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#camposTelaLogin {
+    text-align: left;
+    margin-right: 100px; /* Ajuste a margem conforme necessário */
+    margin-left: auto;
+}
+
+#imgTelaLogin {
+    text-align: right;
+    margin-left: auto; /* Ajuste a margem conforme necessário */
+    margin-right: 200px;
+
+}
+
+#imgTelaLogin img {
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-height: 50%; /* Ajuste a altura conforme necessário */
+
+}
 
