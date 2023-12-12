@@ -17,6 +17,8 @@
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputScript name="primefaces/locales/locale-pt.js"/>
     <h:outputStylesheet name="/styles.css"/>
+    <f:phaseListener type="br.com.FinancePI.Controladores.LoginListenerController" />
+
 </h:head>
 
 
@@ -29,15 +31,15 @@
                 <p:panel header="Faça Login ou Cadastre-se!" >
                 <h:panelGrid columns="2">
                     <p:outputLabel value="Seu e-mail:"/>
-                    <p:inputText size="20" maxlength="50" value="#{loginController.loginEmail}" required="true"
+                    <p:inputText size="20" maxlength="50" value="#{loginListenerController.loginEmail}" required="true"
                                  requiredMessage="O campo 'E-mail' é obrigatório"/>
 
                     <p:outputLabel value="Sua senha: "/>
-                    <h:inputSecret size="20" maxlength="20" value="#{loginController.loginSenha}"
+                    <h:inputSecret size="20" maxlength="20" value="#{loginListenerController.loginSenha}"
                                  requiredMessage="O campo 'Senha' é obrigatório"
                                  converterMessage="O campo 'Senha' só aceita números inteiros"/>
 
-                    <p:commandButton value="Login" actionListener="#{loginController.login()}"/>
+                    <p:commandButton value="Login" actionListener="#{loginListenerController.login()}"/>
                     <p:button value="Cadastre-se" outcome="telaCadastro.xhtml"/>
 
                 </h:panelGrid>

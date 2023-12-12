@@ -53,6 +53,7 @@ public class DespesaController implements Serializable {
     @PostConstruct
     public void init() {
         listaNaturezas = natDAO.listarCategorias();
+
         dataInicio = LocalDate.now();
         dataFim = LocalDate.now();
     }
