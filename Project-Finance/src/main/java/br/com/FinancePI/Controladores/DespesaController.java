@@ -5,6 +5,7 @@ import br.com.FinancePI.DAO.DespesaDAO;
 import br.com.FinancePI.Entidades.Natureza;
 import br.com.FinancePI.Entidades.Despesa;
 import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import lombok.Data;
@@ -33,7 +34,7 @@ public class DespesaController implements Serializable {
     @Autowired
     NaturezaDAO natDAO = new NaturezaDAO();
 
-    @Inject
+
     private Despesa despesa;
 
     private String valorBoolean;
@@ -52,7 +53,6 @@ public class DespesaController implements Serializable {
     @PostConstruct
     public void init() {
         listaNaturezas = natDAO.listarCategorias();
-
         dataInicio = LocalDate.now();
         dataFim = LocalDate.now();
     }

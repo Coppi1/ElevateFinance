@@ -22,29 +22,8 @@ public class LoginController implements Serializable {
 
     public static final long serialVersionUID = 1L;
 
-    @Autowired
-    private UsuarioDAO usuarioDAO;
 
-    private String loginEmail;
-    private String loginSenha;
 
-    public String login() throws IOException {
-        Usuario usuario = usuarioDAO.buscaPorEmail(loginEmail);
-        if (usuario != null) {
-            if (usuario.getSenha() == loginSenha) {
-                FacesContext context = FacesContext.getCurrentInstance();
-                context.getExternalContext().redirect("META-INF/resources/Lancamento/telaLancamentoDespesa.xhtml");
-                Messages.addFlashGlobalInfo("Sucesso!");
-                return "Lancamento/telaLancamentoDespesa.xhtml.xhtml?faces-redirect=true";
 
-            } else {
-                Messages.addFlashGlobalInfo("Senha incorreta");
-                return "Senha incorreta";
-            }
-        } else {
-            Messages.addFlashGlobalInfo("Email Inexistente");
-            return "email incorreto";
-        }
-    }
 
 }
